@@ -5,9 +5,11 @@
 #ifndef RAYTRACING_OBJECT_H
 #define RAYTRACING_OBJECT_H
 
+#include "Vector.h"
 
 class Object {
 public:
+    Position position;
 
     Object();
     virtual bool intersect();
