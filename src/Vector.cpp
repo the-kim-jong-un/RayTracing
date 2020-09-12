@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cmath>
 
+
 /*
 template<typename T>
 float Vector3<T>::mag() const {

@@ -7,6 +7,8 @@
 
 
 #include "Vector.h"
+#include "Object.h"
+class Object;
 
 class Ray {
 public:
@@ -16,6 +18,7 @@ public:
     Ray(const Position & position, const Vector3f & direction);
 };
 
+bool traceRay(const Ray &ray, float &inter, Object *& hitObj);
 Vector3f castRay(const Ray& ray);
 
 #endif //RAYTRACING_RAY_H

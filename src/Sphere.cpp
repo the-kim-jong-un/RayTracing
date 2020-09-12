@@ -3,3 +3,11 @@
 //
 
 #include "Sphere.h"
+
+bool Sphere::intersect(const Ray & ray) {
+    return false;
+}
+
+Sphere::~Sphere(){
+
+}

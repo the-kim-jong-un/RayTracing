@@ -72,7 +72,6 @@ Vector3<float> normalize(const Vector3<T> & vec){
     return Vector3(vec / magnitude(vec));
 }
 
-
 typedef Vector3<float> Position ;
 typedef Vector3<float> Vector3f ;
 typedef Vector3<int> Vector3i;

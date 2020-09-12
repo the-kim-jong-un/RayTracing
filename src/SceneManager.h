@@ -17,4 +17,5 @@ public:
 };
 
 
+
 #endif //RAYTRACING_SCENEMANAGER_H

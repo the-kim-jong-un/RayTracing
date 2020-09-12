@@ -9,6 +9,8 @@
 #include "Object.h"
 
 class Sphere : public Object{
+    ~Sphere() override;
+    bool intersect(const Ray& ray) override;
 
 };
 

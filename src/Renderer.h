@@ -6,12 +6,21 @@
 #define RAYTRACING_RENDERER_H
 
 
+#include "Vector.h"
+
 class Renderer {
     unsigned int width;
     unsigned int height;
-    Renderer();
+    Vector3f backgroundColor;
+    Renderer(const int & width, const int& height,const Vector3f & BG=Vector3f(200,200,200));
     void render();
+
+private:
+    Vector3f * frameBuffer;
 };
+
+float clamp(const float & low, const float & high, const float &val);
+float deg2rad(const float &deg);
 
 
 #endif //RAYTRACING_RENDERER_H
