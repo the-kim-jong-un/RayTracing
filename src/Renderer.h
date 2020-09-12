@@ -9,9 +9,10 @@
 #include "Vector.h"
 
 class Renderer {
+public:
     unsigned int width;
     unsigned int height;
-    Vector3f backgroundColor;
+    static Vector3f backgroundColor;
     Renderer(const int & width, const int& height,const Vector3f & BG=Vector3f(200,200,200));
     void render();
 

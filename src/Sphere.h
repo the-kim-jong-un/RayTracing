@@ -13,9 +13,11 @@ public:
     float radius;
 
     Sphere();
+    Sphere(const Vector3f& pos, float radius,const Vector3f &color);
     ~Sphere() override;
-    bool intersect(const Ray& ray) override;
-
+    void print() const override;
+    bool intersect(const Ray& ray, float&t) override;
+    void getSurfaceData(const Vector3f &Phit, Vector3f &Nhit, Vector3f &tex) const override ;
 };
 
 

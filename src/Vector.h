@@ -47,13 +47,17 @@ public:
     const T& operator [] (uint8_t i) const { return (&x)[i]; }
     T& operator [] (uint8_t i) { return (&x)[i]; }
 
-    void print(){
+    void print() const {
         std::cout<< "{ "<<this->x << ", "<< this->y<< ", "<<this->z<<" }"<< "\n";
     }
 };
 template<typename T>
 Vector3<T> operator+(Vector3<T> from, const Vector3<T>& add) {
     return Vector3(from.x + add.x, from.y + add .y, from.z+add.z);
+}
+template<typename T>
+Vector3<T> operator-(Vector3<T> from, const Vector3<T>& add) {
+    return Vector3(from.x - add.x, from.y - add .y, from.z-add.z);
 }
 template<typename T>
 Vector3<T> operator+=(Vector3<T> from ,const Vector3<T> & add) {
@@ -64,7 +68,7 @@ Vector3<T> operator*(T n,const Vector3<T> &vec){
     return Vector3(vec.x*n, vec.y*n, vec.z*n);
 }
 template<typename T>
-Vector3<T> operator*(Vector3<T> &vec, const T & n){
+Vector3<T> operator*(Vector3<T> vec, const T & n){
     return n*vec;
 }
 template<typename T>

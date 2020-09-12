@@ -13,10 +13,15 @@ class Ray;
 class Object {
 public:
     Position position;
+    Vector3f color;
 
     Object();
-    virtual bool intersect(const Ray & ray) = 0;
+    virtual void print() const  =0;
+    virtual bool intersect(const Ray & ray, float & t) = 0;
+    virtual void getSurfaceData(const Vector3f &Phit, Vector3f &Nhit, Vector3f &tex) const =0 ;
     virtual ~Object() = 0;
+
+    void debug();
 
 };
 
