@@ -39,6 +39,14 @@ public:
     Vector3<float> normalize(){
         return Vector3(*this / this->mag());
     }
+
+    T dotProduct(const Vector3<T> & vec) const{
+        return (x*vec.x + y*vec.y +z*vec.z);
+    }
+
+    const T& operator [] (uint8_t i) const { return (&x)[i]; }
+    T& operator [] (uint8_t i) { return (&x)[i]; }
+
     void print(){
         std::cout<< "{ "<<this->x << ", "<< this->y<< ", "<<this->z<<" }"<< "\n";
     }

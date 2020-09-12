@@ -11,3 +11,8 @@ bool Sphere::intersect(const Ray & ray) {
 Sphere::~Sphere(){
 
 }
+
+Sphere::Sphere() {
+    position=Vector3f();
+    radius=1;
+}
