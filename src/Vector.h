@@ -34,7 +34,7 @@ public:
     }
 
     float mag() const{
-        return sqrtf((this->x* this->x) + (this->y * this->y) + (this->z + this->z));
+        return sqrtf((this->x* this->x) + (this->y * this->y) + (this->z * this->z));
     }
     Vector3<float> normalize(){
         return Vector3(*this / this->mag());
@@ -43,6 +43,38 @@ public:
     T dotProduct(const Vector3<T> & vec) const{
         return (x*vec.x + y*vec.y +z*vec.z);
     }
+
+    Vector3<T> crossProduct(const Vector3<T> &v) const
+    {
+        return Vector3<T>(
+                y * v.z - z * v.y,
+                z * v.x - x * v.z,
+                x * v.y - y * v.x);
+    }
+
+    Vector3<T> rotateAround(const char &axis,const float &angle,const Vector3 & pos){
+        Vector3 tmp;
+        switch (axis) {
+            case 'x':
+                tmp.x=x;
+                tmp.y=y*cos(angle) - z*sin(angle);
+                tmp.z=y*sin(angle) + z*cos(angle);
+                return tmp;
+            case 'y':
+                tmp.x= (x*cos(angle)) + (z*sin(angle));
+                tmp.y=y;
+                tmp.z= (-x * sin(angle)) + (z * cos(angle));
+                return tmp;
+            case 'z':
+                tmp.x= (x*cos(angle))-(y*sin(angle));
+                tmp.y= (x*sin(angle)) + (y*cos(angle));
+                tmp.z=z;
+                return tmp;
+
+        }
+    }
+
+
 
     const T& operator [] (uint8_t i) const { return (&x)[i]; }
     T& operator [] (uint8_t i) { return (&x)[i]; }
@@ -82,6 +114,15 @@ float magnitude(const Vector3<T> & vec) {
 template<typename T>
 Vector3<float> normalize(const Vector3<T> & vec){
     return Vector3(vec / magnitude(vec));
+}
+
+template<typename T>
+Vector3<T> crossProduct(const Vector3<T>  &a, const Vector3<T> &b)
+{
+    return Vector3<T>(
+            a.y * b.z - a.z * b.y,
+            a.z * b.x - a.x * b.z,
+            a.x * b.y - a.y * b.x);
 }
 
 typedef Vector3<float> Position ;

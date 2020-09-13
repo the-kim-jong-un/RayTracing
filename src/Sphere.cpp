@@ -7,14 +7,14 @@
 bool Sphere::intersect(const Ray & ray, float &t){
     float t0,t1;
     Vector3f tmp= position - ray.position;
+    float radius2 = radius*radius;
     float tca = tmp.dotProduct(ray.direction);
     if (tca <0) {
-        //std::cout <<"TCA<0 : "<< tca<<'\n';
         return false;
     }
     float d2 = tmp.dotProduct(tmp) - tca * tca;
-    if (d2 > radius*radius) return false;
-    float thc = sqrt(radius*radius - d2);
+    if (d2 > radius2) return false;
+    float thc = sqrt(radius2 - d2);
     t0 = tca - thc;
     t1 = tca + thc;
 

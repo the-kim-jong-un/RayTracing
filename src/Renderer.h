@@ -23,6 +23,7 @@ public:
     void saveToFile(const Vector3f * frameBuffer);
 
 private:
+    int imagecount=0;
     Vector3f * frameBuffer;
 };
 

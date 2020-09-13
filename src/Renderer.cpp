@@ -24,7 +24,7 @@ Renderer::Renderer(const int &width, const int &height,const Vector3f & BG) {
 void Renderer::render() {
     Vector3f origin;
     float fov = tan(deg2rad(Camera::fov*0.5));
-    float ratio = width/height;
+    float ratio = width/(float)height;
     frameBuffer = new Vector3f[width*height];
     Vector3f * pix = frameBuffer;
     Camera::cameraToWorld.multVecMatrix(Vector3f(),origin);
@@ -36,12 +36,8 @@ void Renderer::render() {
             Vector3f dir;
             Camera::cameraToWorld.multDirMatrix(Vector3f (x,y,-1),dir);
             dir=normalize(dir);
-            unsigned int ind =j*height+i;
+            unsigned int ind =j*width+i;
             pix[ind]=castRay(Ray(origin,dir));
-            if (j==height/2 && i ==width/2) {
-
-                std::cout << "50% done"<< '\n';
-            }
         }
     }
 
@@ -109,7 +105,7 @@ void Renderer::threadRayCast(Vector3f *framebuffer,const Vector3f & origin, cons
             Vector3f dir;
             Camera::cameraToWorld.multDirMatrix(Vector3f (x,y,-1),dir);
             dir=normalize(dir);
-            unsigned int ind =j*height+i;
+            unsigned int ind =j*width+i;
             framebuffer[ind]=castRay(Ray(origin,dir));
         }
     }
@@ -120,7 +116,8 @@ void Renderer::saveToFile(const Vector3f *frameBuffer) {
     std::chrono::steady_clock sc;   // create an object of `steady_clock` class
     auto start = sc.now();     // start timer
 
-    std::ofstream ofs("../data/render.ppm", std::ios::out);
+    std::ofstream ofs("../data/render" + std::to_string(imagecount) +".ppm", std::ios::out);
+    ++imagecount;
     ofs << "P6\n" << width << " " << height << "\n255\n";
     for (int i = 0; i < width*height; ++i) {
         char r= (char)(int)frameBuffer[i].x;
@@ -131,7 +128,7 @@ void Renderer::saveToFile(const Vector3f *frameBuffer) {
     ofs.close();
     auto end = sc.now();
     auto time_span = static_cast<std::chrono::duration<double>>(end - start);   // measure time span between start & end
-    std::cout<<"Image saved in: "<<time_span.count()<<" seconds"<<'\n';
+    //std::cout<<"Image saved in: "<<time_span.count()<<" seconds"<<'\n';
 }
 
 

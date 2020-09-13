@@ -23,7 +23,7 @@ Ray::Ray(const Vector3f &position, const Vector3f &direction) {
 }
 
 Vector3f castRay(const Ray& ray){
-    Vector3f hitColor = Vector3f() ;
+    Vector3f hitColor;
     Object *hitObject = nullptr; // this is a pointer to the hit object
     float t; // this is the intersection distance from the ray origin to the hit point
     if (traceRay(ray, t, hitObject)) {
