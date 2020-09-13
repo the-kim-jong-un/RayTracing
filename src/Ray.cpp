@@ -37,10 +37,10 @@ Vector3f castRay(const Ray& ray){
         float scale = 4;
         float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
         hitColor = std::max(0.f, Nhit.dotProduct(-1.0f*ray.direction)) * mix(hitObject->color, hitObject->color * 0.8f, pattern);
-        hitColor.print();
+        //hitColor.print();
     } else {
         hitColor= Renderer::backgroundColor;
-        hitColor.print();
+        //hitColor.print();
     }
     return hitColor;
 }

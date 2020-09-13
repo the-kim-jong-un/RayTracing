@@ -4,6 +4,10 @@
 #include <random>
 #include <utility>
 #include <memory>
+#include <chrono>
+
+#include "immintrin.h"
+
 #include "Vector.h"
 #include "Camera.h"
 #include "Ray.h"
@@ -24,9 +28,13 @@ float Camera::fov;
 Vector3f Renderer::backgroundColor;
 
 int main() {
+
+    std::chrono::steady_clock sc;   // create an object of `steady_clock` class
+    auto start = sc.now();     // start timer
+
     Renderer * ren;
     Camera::fov=53;
-    ren = new Renderer(1000,1000, Vector3f(0));
+    ren = new Renderer(1024,1024, Vector3f(0));
     Camera::cameraToWorld = Matrix4x4(0.945519, 0, -0.325569, 0, -0.179534, 0.834209, -0.521403, 0, 0.271593, 0.551447, 0.78876, 0, 4.208271, 8.374532, 17.932925, 1);
     unsigned int sizeX=1000;
     unsigned int sizeY=1000;
@@ -53,9 +61,16 @@ int main() {
         SceneManager::objects.push_back(new Sphere(randPos, randRadius, Color));
     }
 
-    Sphere * testSp;
-    testSp=new Sphere();
-    SceneManager::objects.push_back(testSp);
-    ren->render();
+
+    ren->renderThread();
+
+    for (int index=0; index<SceneManager::objects.size(); index++){
+        delete SceneManager::objects[index];
+    }
+    SceneManager::objects.empty();
+    delete ren;
+    auto end = sc.now();       // end timer (starting & ending is done by measuring the time at the moment the process started & ended respectively)
+    auto time_span = static_cast<std::chrono::duration<double>>(end - start);   // measure time span between start & end
+    std::cout<<"Render + save in : "<<time_span.count()<<" seconds";
     return 0;
 }
