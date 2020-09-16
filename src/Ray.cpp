@@ -52,7 +52,7 @@ bool traceRay(const Ray &ray, float &inter, Object *& hitObj) {
         float t = kInfinity;
         bool res = SceneManager::objects[Index]->intersect(ray,t);
         if (res && t<inter){
-            //ray.position.print();
+            //ray.origin.print();
             //ray.direction.print();
             hitObj=SceneManager::objects[Index];
             inter = t;

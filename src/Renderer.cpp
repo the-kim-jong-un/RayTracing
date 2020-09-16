@@ -13,15 +13,15 @@
 #include <ostream>
 #include <fstream>
 
-Renderer::Renderer(const int &width, const int &height,const Vector3f & BG) {
+Renderer::Renderer(const int &width, const int &height,const Vector3f & BG, const RenderMode &r) {
     this->width=width;
     this->height=height;
     backgroundColor=BG;
-
+    renderMode = r;
 }
 
 
-void Renderer::render() {
+void Renderer::renderMono() {
     Vector3f origin;
     float fov = tan(deg2rad(Camera::fov*0.5));
     float ratio = width/(float)height;
@@ -41,16 +41,6 @@ void Renderer::render() {
         }
     }
 
-    /*
-    std::ofstream ofs("../data/render.ppm", std::ios::out);
-    ofs << "P6\n" << width << " " << height << "\n255\n";
-    for (int i = 0; i < width*height; ++i) {
-        char r= (char)(int)pix[i].x;
-        char g= (char)(int)pix[i].y;
-        char b= (char)(int)pix[i].z;
-        ofs << r << g << b;
-    }
-    ofs.close();*/
     saveToFile(pix);
     delete [] pix;
 }
@@ -78,21 +68,6 @@ void Renderer::renderThread() {
     for (int i = 0; i < maxThread; ++i) {
         tPool[i].join();
     };
-
-    /*
-    for (int j = 0; j < height; ++j) {
-        for (int i = 0; i < width; ++i) {
-            float x = (2 * (i + 0.5) / (float)width - 1) * fov;
-            float y = (1 - 2 * (j + 0.5) / (float)height) * fov * (1/ratio);
-
-            Vector3f dir;
-            Camera::cameraToWorld.multDirMatrix(Vector3f (x,y,-1),dir);
-            dir=normalize(dir);
-            unsigned int ind =j*height+i;
-            pix[ind]=castRay(Ray(origin,dir));
-        }
-    }*/
-
     saveToFile(pix);
     delete [] pix;
 }
@@ -131,6 +106,16 @@ void Renderer::saveToFile(const Vector3f *frameBuffer) {
     //std::cout<<"Image saved in: "<<time_span.count()<<" seconds"<<'\n';
 }
 
+void Renderer::render() {
+    switch (renderMode) {
+        case MONO:
+            renderMono();
+            break;
+        case MULTI:
+            renderThread();
+            break;
+    }
+}
 
 
 inline

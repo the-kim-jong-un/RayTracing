@@ -52,7 +52,7 @@ public:
                 x * v.y - y * v.x);
     }
 
-    Vector3<T> rotateAround(const char &axis,const float &angle,const Vector3 & pos){
+    Vector3<T> rotateAround(const char &axis,const float &angle){
         Vector3 tmp;
         switch (axis) {
             case 'x':

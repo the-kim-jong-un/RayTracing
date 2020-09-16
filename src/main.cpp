@@ -26,6 +26,7 @@ std::vector<Light*> SceneManager::lights;
 Matrix4x4 Camera::cameraToWorld;
 float Camera::fov;
 
+Renderer::RenderMode Renderer::renderMode;
 Vector3f Renderer::backgroundColor;
 
 int main() {
@@ -35,17 +36,16 @@ int main() {
 
     Renderer * ren;
     Camera::fov=55;
-    ren = new Renderer(512,512, Vector3f(0));
-    //Camera::cameraToWorld = Matrix4x4(0.945519, 0, -0.325569, 0, -0.179534, 0.834209, -0.521403, 0, 0.271593, 0.551447, 0.78876, 0, 4.208271, 8.374532, 17.932925, 1);
-    //Camera::cameraToWorld=Camera::lookAt(Vector3f(40,0,0),Vector3f());
-    unsigned int sizeX=1000;
-    unsigned int sizeY=1000;
+    ren = new Renderer(2048,2048, Vector3f(0), Renderer::MULTI);
 
-    int numSpheres = 64;
+    float spawnSpread = 40;
+
+
+    int numSpheres = 512;
     gen.seed(time(NULL));
     for (uint32_t i = 0; i < numSpheres; ++i) {
-        Vector3f randPos((0.5 - dis(gen)) * 10, (0.5 - dis(gen)) * 10, (0.5-dis(gen)) * 10);
-        float randRadius = (0.5 + dis(gen) * 0.5);
+        Vector3f randPos((0.5 - dis(gen)) * spawnSpread, (0.5 - dis(gen)) * spawnSpread, (0.5-dis(gen)) * spawnSpread);
+        float randRadius =  0.5 + dis(gen) * 0.5;
         int randcolor = dis(gen)*6;
         Vector3f Color;
         if(randcolor==0)
@@ -62,23 +62,28 @@ int main() {
             Color = Vector3f(0,0,255);
         SceneManager::objects.push_back(new Sphere(randPos, randRadius, Color));
     }
-    Sphere * orig = new Sphere(Vector3f(),1,Vector3f(255));
+    Sphere * orig = new Sphere(Vector3f(),1,Vector3f(255,255,255));
     SceneManager::objects.push_back(orig);
 
-    int fps = 60;
-    int frames=64;
+
+    unsigned int fps = 60;
+    int frames=16;
+    std::cout<< "render mode : " << Renderer::renderMode << '\n';
+
+
     double rawDelay = 1 / (double)60;
     double delay=0;
     double deltaTime=0;
-    Vector3f lookatVec = Vector3f(-20,0,0);
-    //std::cout<<"ref mag : "<<lookatVec.mag()<<'\n';
+    Vector3f lookatVec = Vector3f(-60,10,0);
 
     for (int i=0;i<frames;i++){
         auto fpsStart = std::chrono::high_resolution_clock::now();
-        lookatVec=lookatVec.rotateAround('y', .2f*deltaTime,Vector3f());
+        lookatVec=lookatVec.rotateAround('y', 0.02f);
         std::cout<<"frame : "<<i<<'\n';
         Camera::cameraToWorld=Camera::lookAt(lookatVec,Vector3f());
-        ren->renderThread();
+
+        ren->render();
+
         auto fpsEnd = std::chrono::high_resolution_clock::now();
 
         std::chrono::duration<double> elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(fpsEnd - fpsStart);
@@ -93,11 +98,8 @@ int main() {
         } else deltaTime=elapsed.count()/1;
     }
 
+    SceneManager::clear();
 
-    for (int index=0; index<SceneManager::objects.size(); index++){
-        delete SceneManager::objects[index];
-    }
-    SceneManager::objects.empty();
     delete ren;
     auto end = sc.now();
     auto time_span = static_cast<std::chrono::duration<double>>(end - start);

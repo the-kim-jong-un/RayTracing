@@ -3,3 +3,10 @@
 //
 
 #include "SceneManager.h"
+
+void SceneManager::clear() {
+    for (int index=0; index<SceneManager::objects.size(); index++){
+        delete SceneManager::objects[index];
+    }
+    SceneManager::objects.empty();
+}

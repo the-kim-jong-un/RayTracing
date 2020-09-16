@@ -13,6 +13,8 @@ class SceneManager {
 public:
     static std::vector<Object*> objects;
     static std::vector<Light*> lights;
+
+    static void clear();
     static void test();
 };
 
