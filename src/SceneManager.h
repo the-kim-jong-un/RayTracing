@@ -6,6 +6,7 @@
 #define RAYTRACING_SCENEMANAGER_H
 
 
+
 #include <vector>
 #include "Object.h"
 #include "Light.h"
@@ -15,7 +16,6 @@ public:
     static std::vector<Light*> lights;
 
     static void clear();
-    static void test();
 };
 
 

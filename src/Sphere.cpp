@@ -14,7 +14,7 @@ bool Sphere::intersect(const Ray & ray, float &t){
     }
     float d2 = tmp.dotProduct(tmp) - tca * tca;
     if (d2 > radius2) return false;
-    float thc = sqrt(radius2 - d2);
+    float thc = sqrtf(radius2 - d2);
     t0 = tca - thc;
     t1 = tca + thc;
 

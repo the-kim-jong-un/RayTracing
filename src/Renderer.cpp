@@ -43,6 +43,7 @@ void Renderer::renderMono() {
 
     saveToFile(pix);
     delete [] pix;
+
 }
 
 void Renderer::renderThread() {
@@ -88,6 +89,7 @@ void Renderer::threadRayCast(Vector3f *framebuffer,const Vector3f & origin, cons
 
 
 void Renderer::saveToFile(const Vector3f *frameBuffer) {
+    int count = imagecount;
     std::chrono::steady_clock sc;   // create an object of `steady_clock` class
     auto start = sc.now();     // start timer
 
@@ -103,7 +105,7 @@ void Renderer::saveToFile(const Vector3f *frameBuffer) {
     ofs.close();
     auto end = sc.now();
     auto time_span = static_cast<std::chrono::duration<double>>(end - start);   // measure time span between start & end
-    //std::cout<<"Image saved in: "<<time_span.count()<<" seconds"<<'\n';
+    std::cout<<"Image " << count<< " saved in: "<<time_span.count()<<" seconds"<<'\n';
 }
 
 void Renderer::render() {
