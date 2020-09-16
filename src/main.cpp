@@ -31,8 +31,8 @@ Vector3f Renderer::backgroundColor;
 
 int main() {
 
-    std::chrono::steady_clock sc;
-    auto start = sc.now();
+    //std::chrono::steady_clock sc;
+    auto start = std::chrono::steady_clock::now();
 
     Renderer * ren;
     Camera::fov=55;
@@ -41,11 +41,11 @@ int main() {
 
 
 
-    int numSpheres = 64;
+    int numSpheres = 1024;
     gen.seed(time(NULL));
     for (uint32_t i = 0; i < numSpheres; ++i) {
         Vector3f randPos((0.5 - dis(gen)) * spawnSpread, (0.5 - dis(gen)) * spawnSpread, (0.5-dis(gen)) * spawnSpread);
-        float randRadius =  0.5 + dis(gen) * 0.5;
+        float randRadius =  0.5f + (float)dis(gen) * 0.5f;
         int randcolor = dis(gen)*6;
         Vector3f Color;
         if(randcolor==0)
@@ -75,13 +75,13 @@ int main() {
     double rawDelay = 1 / (double)60;
     double delay=0;
     double deltaTime=0;
-    Vector3f lookatVec = Vector3f(-60,10,0);
+    Vector3f lookAtVec = Vector3f(-60, 10, 0);
 
     for (int i=0;i<frames;i++){
         auto fpsStart = std::chrono::high_resolution_clock::now();
-        lookatVec=lookatVec.rotateAround('y', 0.02f);
+        lookAtVec=lookAtVec.rotateAround('y', 0.02f);
         std::cout<<"frame : "<<i<<'\n';
-        Camera::cameraToWorld=Camera::lookAt(lookatVec,Vector3f());
+        Camera::cameraToWorld=Camera::lookAt(lookAtVec, Vector3f());
 
         ren->render();
 
@@ -89,7 +89,7 @@ int main() {
 
         std::chrono::duration<double> elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(fpsEnd - fpsStart);
         //std::cout << elapsed.count() << "/" << rawDelay << '\n';
-        if (elapsed.count() < rawDelay || false){
+        if (elapsed.count() < rawDelay){
             delay= rawDelay - elapsed.count();
             std::cout << "delay : " << delay << '\n';
             deltaTime=delay + elapsed.count()/10;
@@ -101,7 +101,7 @@ int main() {
     SceneManager::clear();
 
     delete ren;
-    auto end = sc.now();
+    auto end = std::chrono::steady_clock::now();
     auto time_span = static_cast<std::chrono::duration<double>>(end - start);
     std::cout<<"Rendered " <<frames<< " frames in : "<<time_span.count()<<" seconds";
     return 0;

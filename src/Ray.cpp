@@ -35,12 +35,11 @@ Vector3f castRay(const Ray& ray){
         // The normal is used to compute a simple facing ratio and the texture coordinate
         // to compute a basic checker board pattern
         float scale = 4;
-        float pattern = (fmodf(tex.x * scale, 1) > 0.5) ^ (fmodf(tex.y * scale, 1) > 0.5);
+        float pattern = (fmodf(tex.x * scale, 1) > 0.5f) ^ (fmodf(tex.y * scale, 1) > 0.5);
         hitColor = std::max(0.f, Nhit.dotProduct(-1.0f*ray.direction)) * mix(hitObject->color, hitObject->color * 0.8f, pattern);
         //hitColor.print();
     } else {
         hitColor= Renderer::backgroundColor;
-        //hitColor.print();
     }
     return hitColor;
 }
@@ -56,6 +55,5 @@ bool traceRay(const Ray &ray, float &inter, Object *& hitObj) {
             inter = t;
         }
     }
-    //std::cout<<inter<<'\n';
     return (hitObj != nullptr);
 }

@@ -4,7 +4,7 @@
 
 #include "Camera.h"
 
-Matrix4x4 Camera::lookAt(Vector3<float> from, Vector3<float> to, Vector3f dir) {
+Matrix4x4 Camera::lookAt(const Vector3<float> & from, const Vector3<float> & to,const Vector3f & dir) {
     {
         Vector3f forward = normalize(from - to);
         Vector3f right = crossProduct(normalize(dir), forward);

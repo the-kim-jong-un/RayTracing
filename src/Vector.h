@@ -38,7 +38,7 @@ public:
         return *this;
     }
 
-    float mag() const {
+    [[nodiscard]] float mag() const {
         return sqrtf((this->x * this->x) + (this->y * this->y) + (this->z * this->z));
     }
 
@@ -46,11 +46,11 @@ public:
         return Vector3(*this / this->mag());
     }
 
-    T dotProduct(const Vector3<T> &vec) const {
+    [[nodiscard]] T dotProduct(const Vector3<T> &vec) const {
         return (x * vec.x + y * vec.y + z * vec.z);
     }
 
-    Vector3<T> crossProduct(const Vector3<T> &v) const {
+    [[nodiscard]] Vector3<T> crossProduct(const Vector3<T> &v) const {
         return Vector3<T>(
                 y * v.z - z * v.y,
                 z * v.x - x * v.z,
@@ -62,17 +62,17 @@ public:
         switch (axis) {
             case 'x':
                 tmp.x = x;
-                tmp.y = y * cos(angle) - z * sin(angle);
-                tmp.z = y * sin(angle) + z * cos(angle);
+                tmp.y = y * cosf(angle) - z * sinf(angle);
+                tmp.z = y * sinf(angle) + z * cosf(angle);
                 return tmp;
             case 'y':
-                tmp.x = (x * cos(angle)) + (z * sin(angle));
+                tmp.x = (x * cosf(angle)) + (z * sinf(angle));
                 tmp.y = y;
-                tmp.z = (-x * sin(angle)) + (z * cos(angle));
+                tmp.z = (-x * sinf(angle)) + (z * cosf(angle));
                 return tmp;
             case 'z':
-                tmp.x = (x * cos(angle)) - (y * sin(angle));
-                tmp.y = (x * sin(angle)) + (y * cos(angle));
+                tmp.x = (x * cosf(angle)) - (y * sinf(angle));
+                tmp.y = (x * sinf(angle)) + (y * cosf(angle));
                 tmp.z = z;
                 return tmp;
 

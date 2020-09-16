@@ -7,8 +7,6 @@
 #include "Camera.h"
 #include "immintrin.h"
 #include <thread>
-#include <cstdio>
-#include <cstdlib>
 #include <iostream>
 #include <ostream>
 #include <fstream>
@@ -20,18 +18,17 @@ Renderer::Renderer(const int &width, const int &height,const Vector3f & BG, cons
     renderMode = r;
 }
 
-
 void Renderer::renderMono() {
     Vector3f origin;
-    float fov = tan(deg2rad(Camera::fov*0.5));
-    float ratio = width/(float)height;
+    float fov = tanf(deg2rad(Camera::fov*0.5f));
+    float ratio = (float)width/(float)height;
     frameBuffer = new Vector3f[width*height];
     Vector3f * pix = frameBuffer;
     Camera::cameraToWorld.multVecMatrix(Vector3f(),origin);
     for (int j = 0; j < height; ++j) {
         for (int i = 0; i < width; ++i) {
-            float x = (2 * (i + 0.5) / (float)width - 1) * fov;
-            float y = (1 - 2 * (j + 0.5) / (float)height) * fov * (1/ratio);
+            float x = (2 * ((float)i + 0.5f) / (float)width - 1) * fov;
+            float y = (1 - 2 * ((float)j + 0.5f) / (float)height) * fov * (1/ratio);
 
             Vector3f dir;
             Camera::cameraToWorld.multDirMatrix(Vector3f (x,y,-1),dir);
@@ -43,15 +40,12 @@ void Renderer::renderMono() {
 
     saveToFile(pix);
     delete [] pix;
-
 }
 
 void Renderer::renderThread() {
-    int sectionWidth= width/32;
-
     Vector3f origin;
-    float fov = tan(deg2rad(Camera::fov*0.5));
-    float ratio = width/height;
+    float fov = tanf(deg2rad(Camera::fov*0.5f));
+    float ratio = (float)width/(float)height;
     frameBuffer = new Vector3f[width*height];
     Vector3f * pix = frameBuffer;
     Camera::cameraToWorld.multVecMatrix(Vector3f(),origin);
@@ -73,11 +67,11 @@ void Renderer::renderThread() {
     delete [] pix;
 }
 
-void Renderer::threadRayCast(Vector3f *framebuffer,const Vector3f & origin, const float & fov, const float &ratio,const unsigned int & offset) {
+void Renderer::threadRayCast(Vector3f *framebuffer,const Vector3f & origin, const float & fov, const float &ratio,const unsigned int & offset) const {
     for (int j = 0; j < height; ++j) {
-        for (int i = offset*(width/maxThread); i < (offset+1)*(width/maxThread); ++i) {
-            float x = (2 * (i + 0.5) / (float)width - 1) * fov;
-            float y = (1 - 2 * (j + 0.5) / (float)height) * fov * (1/ratio);
+        for (unsigned int i = offset*(width/maxThread); i < (offset+1)*(width/maxThread); ++i) {
+            float x = (2 * ((float)i + 0.5f) / (float)width - 1) * fov;
+            float y = (1 - 2 * ((float)j + 0.5f) / (float)height) * fov * (1/ratio);
             Vector3f dir;
             Camera::cameraToWorld.multDirMatrix(Vector3f (x,y,-1),dir);
             dir=normalize(dir);
@@ -90,8 +84,7 @@ void Renderer::threadRayCast(Vector3f *framebuffer,const Vector3f & origin, cons
 
 void Renderer::saveToFile(const Vector3f *frameBuffer) {
     int count = imagecount;
-    std::chrono::steady_clock sc;   // create an object of `steady_clock` class
-    auto start = sc.now();     // start timer
+    auto start = std::chrono::steady_clock::now();     // start timer
 
     std::ofstream ofs("../data/render" + std::to_string(imagecount) +".ppm", std::ios::out);
     ++imagecount;
@@ -103,7 +96,7 @@ void Renderer::saveToFile(const Vector3f *frameBuffer) {
         ofs << r << g << b;
     }
     ofs.close();
-    auto end = sc.now();
+    auto end = std::chrono::steady_clock::now();
     auto time_span = static_cast<std::chrono::duration<double>>(end - start);   // measure time span between start & end
     std::cout<<"Image " << count<< " saved in: "<<time_span.count()<<" seconds"<<'\n';
 }
@@ -126,5 +119,6 @@ float clamp(const float & low, const float & high, const float &val){
 }
 
 inline
-float deg2rad(const float &deg)
-{ return deg * M_PI / 180; }
+float deg2rad(const float &deg) {
+    return deg * (float)M_PI / 180.0f;
+}

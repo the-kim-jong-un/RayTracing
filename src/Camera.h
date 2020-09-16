@@ -14,7 +14,7 @@ public:
     Position origin;
     static float fov;
     static Matrix4x4 cameraToWorld;
-    static Matrix4x4 lookAt(Vector3<float> from, Vector3<float> to, Vector3f dir= Vector3f (0, 1, 0));
+    static Matrix4x4 lookAt(const Vector3<float> & from, const Vector3<float> & to,const Vector3f & dir=Vector3f(0,1,0));
 };
 
 

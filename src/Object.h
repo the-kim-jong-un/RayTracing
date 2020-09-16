@@ -21,8 +21,7 @@ public:
     virtual void getSurfaceData(const Vector3f &Phit, Vector3f &Nhit, Vector3f &tex) const =0 ;
     virtual ~Object() = 0;
 
-    void debug();
-
+    [[maybe_unused]] void debug() const;
 };
 
 

@@ -10,7 +10,7 @@
 
 class Light {
 public:
-    Position position;
+    Position origin;
 };
 
 

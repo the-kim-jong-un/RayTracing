@@ -29,7 +29,7 @@ public:
     void renderMono();
     void renderThread();
 
-    void threadRayCast(Vector3f *framebuffer,const Vector3f & origin, const float & fov, const float &ratio, const unsigned int & offset);
+    void threadRayCast(Vector3f *framebuffer,const Vector3f & origin, const float & fov, const float &ratio, const unsigned int & offset) const;
 
     void saveToFile(const Vector3f * frameBuffer);
 

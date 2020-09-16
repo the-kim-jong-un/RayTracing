@@ -11,7 +11,7 @@ Object::~Object() {
 
 }
 
-void Object::debug() {
+[[maybe_unused]] void Object::debug() const {
     position.print();
     color.print();
 }

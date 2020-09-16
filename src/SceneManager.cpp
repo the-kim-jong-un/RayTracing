@@ -5,8 +5,8 @@
 #include "SceneManager.h"
 
 void SceneManager::clear() {
-    for (int index=0; index<SceneManager::objects.size(); index++){
-        delete SceneManager::objects[index];
+    for (auto & object : SceneManager::objects){
+        delete object;
     }
     SceneManager::objects.empty();
 }
