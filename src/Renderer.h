@@ -18,13 +18,18 @@ public:
         MONO,
         MULTI
     };
+    enum TraceMode{
+        RAYTRACING,
+        SPHERETRACING
+    };
 
     unsigned int width;
     unsigned int height;
     const unsigned int maxThread = 32;
     static RenderMode renderMode;
+    static TraceMode traceMode;
     static Vector3f backgroundColor;
-    Renderer(const int & width, const int& height,const Vector3f & BG=Vector3f(200,200,200),const RenderMode & =MONO);
+    Renderer(const int & width, const int& height,const Vector3f & BG=Vector3f(200,200,200),const RenderMode & =MONO, const TraceMode & = RAYTRACING);
     void render();
     void renderMono();
     void renderThread();
@@ -38,7 +43,7 @@ private:
     Vector3f * frameBuffer;
 };
 
-float clamp(const float & low, const float & high, const float &val);
+inline float clamp(const float & low, const float & high, const float &val);
 float deg2rad(const float &deg);
 
 

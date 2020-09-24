@@ -16,17 +16,19 @@
 #include "Sphere.h"
 #include "Renderer.h"
 #include "Matrix4x4.h"
+#include "Plane.h"
 
 std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_real_distribution<> dis(0, 1);
 
 std::vector<Object*> SceneManager::objects;
-std::vector<Light*> SceneManager::lights;
+std::vector<PointLight*> SceneManager::lights;
 Matrix4x4 Camera::cameraToWorld;
 float Camera::fov;
 
 Renderer::RenderMode Renderer::renderMode;
+Renderer::TraceMode Renderer::traceMode;
 Vector3f Renderer::backgroundColor;
 
 int main() {
@@ -35,13 +37,13 @@ int main() {
     auto start = std::chrono::steady_clock::now();
 
     Renderer * ren;
-    Camera::fov=55;
-    ren = new Renderer(2048,2048, Vector3f(0), Renderer::MULTI);
-    float spawnSpread = 40;
+    Camera::fov=53;
+    ren = new Renderer(1024,1024, Vector3f(0), Renderer::MULTI,Renderer::SPHERETRACING);
+    float spawnSpread = 10;
 
 
 
-    int numSpheres = 1024;
+    int numSpheres = 63;
     gen.seed(time(NULL));
     for (uint32_t i = 0; i < numSpheres; ++i) {
         Vector3f randPos((0.5 - dis(gen)) * spawnSpread, (0.5 - dis(gen)) * spawnSpread, (0.5-dis(gen)) * spawnSpread);
@@ -65,6 +67,12 @@ int main() {
 
     Sphere * orig = new Sphere(Vector3f(),1,Vector3f(255,255,255));
     SceneManager::objects.push_back(orig);
+    Plane * pl = new Plane(Vector3f(0, 1, 0), Vector3f(0, -2, 0));
+    SceneManager::objects.push_back(pl);
+    PointLight * testLight = new PointLight(Vector3f (-15,10,15.6),Vector3f(15, 10, 10),50000);
+    PointLight * testLight2 = new PointLight(Vector3f (-15,10,-12.6),Vector3f(1, 10, 15),5000);
+    SceneManager::lights.push_back(testLight);
+    //SceneManager::lights.push_back(testLight2);
 
 
     unsigned int fps = 60;
@@ -75,7 +83,7 @@ int main() {
     double rawDelay = 1 / (double)60;
     double delay=0;
     double deltaTime=0;
-    Vector3f lookAtVec = Vector3f(-60, 10, 0);
+    Vector3f lookAtVec = Vector3f(-20, 5, 0);
 
     for (int i=0;i<frames;i++){
         auto fpsStart = std::chrono::high_resolution_clock::now();

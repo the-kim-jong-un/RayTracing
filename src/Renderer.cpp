@@ -11,11 +11,12 @@
 #include <ostream>
 #include <fstream>
 
-Renderer::Renderer(const int &width, const int &height,const Vector3f & BG, const RenderMode &r) {
+Renderer::Renderer(const int &width, const int &height,const Vector3f & BG, const RenderMode &r, const TraceMode & t) {
     this->width=width;
     this->height=height;
     backgroundColor=BG;
     renderMode = r;
+    traceMode=t;
 }
 
 void Renderer::renderMono() {
@@ -31,10 +32,20 @@ void Renderer::renderMono() {
             float y = (1 - 2 * ((float)j + 0.5f) / (float)height) * fov * (1/ratio);
 
             Vector3f dir;
-            Camera::cameraToWorld.multDirMatrix(Vector3f (x,y,-1),dir);
+            Camera::cameraToWorld.multDirMatrix(Vector3f (x,y,-1).normalize(),dir);
             dir=normalize(dir);
             unsigned int ind =j*width+i;
-            pix[ind]=castRay(Ray(origin,dir));
+            if (traceMode==RAYTRACING){
+                pix[ind]=castRay(Ray(origin,dir));
+            } else{
+                Vector3f colBuff = Vector3f();
+                int maxRay = 1;
+                for (int rayn = 0; rayn < maxRay; ++rayn) {
+                    colBuff = colBuff+ sphereTrace(Ray(origin,dir));
+                }
+                colBuff = colBuff/(float)maxRay;
+                pix[ind]=colBuff;
+            }
         }
     }
 
@@ -76,7 +87,17 @@ void Renderer::threadRayCast(Vector3f *framebuffer,const Vector3f & origin, cons
             Camera::cameraToWorld.multDirMatrix(Vector3f (x,y,-1),dir);
             dir=normalize(dir);
             unsigned int ind =j*width+i;
-            framebuffer[ind]=castRay(Ray(origin,dir));
+            if (traceMode==RAYTRACING){
+                framebuffer[ind]=castRay(Ray(origin,dir));
+            } else{
+                Vector3f colBuff = Vector3f();
+                int maxRay = 1;
+                for (int rayn = 0; rayn < maxRay; ++rayn) {
+                    colBuff = colBuff+ sphereTrace(Ray(origin,dir));
+                }
+                colBuff = colBuff/(float)maxRay;
+                framebuffer[ind]=colBuff;
+            }
         }
     }
 }

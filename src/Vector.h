@@ -42,6 +42,11 @@ public:
         return sqrtf((this->x * this->x) + (this->y * this->y) + (this->z * this->z));
     }
 
+    [[nodiscard]] float norm() const{
+        return (this->x * this->x) + (this->y * this->y) + (this->z * this->z);
+    }
+
+
     Vector3<float> normalize() {
         return Vector3(*this / this->mag());
     }

@@ -13,5 +13,16 @@ public:
     Position origin;
 };
 
+class PointLight : public Light{
+public:
+
+    PointLight(const Vector3f& p, const Vector3f& c, const float& i);
+    Vector3f col;
+    float intensity;
+};
+
+
+
+
 
 #endif //RAYTRACING_LIGHT_H

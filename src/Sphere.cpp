@@ -6,7 +6,7 @@
 
 bool Sphere::intersect(const Ray & ray, float &t){
     float t0,t1;
-    Vector3f tmp= position - ray.position;
+    Vector3f tmp= position - ray.origin;
     float radius2 = radius*radius;
     float tca = tmp.dotProduct(ray.direction);
     if (tca <0) {
@@ -60,6 +60,10 @@ Sphere::Sphere(const Vector3f& pos,const float & radius, const Vector3f & color)
 void Sphere::print() const {
     std::cout<<"radius = "<<radius<<'\n';
 
+}
+
+float Sphere::getDistance(const Vector3f &from) const {
+    return magnitude(from - position)-radius;
 }
 
 
