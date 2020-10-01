@@ -38,7 +38,7 @@ int main() {
 
     Renderer * ren;
     Camera::fov=53;
-    ren = new Renderer(1024,1024, Vector3f(0), Renderer::MULTI,Renderer::SPHERETRACING);
+    ren = new Renderer(2048,2048, Vector3f(0), Renderer::MULTI,Renderer::SPHERETRACING);
     float spawnSpread = 10;
 
 
