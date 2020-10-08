@@ -41,7 +41,7 @@ void Renderer::renderMono() {
                 Vector3f colBuff = Vector3f();
                 int maxRay = 1;
                 for (int rayn = 0; rayn < maxRay; ++rayn) {
-                    colBuff = colBuff+ sphereTrace(Ray(origin,dir));
+                    colBuff = colBuff+ sphereTrace(Ray(origin,dir),0,depthBuffer[ind]);
                 }
                 colBuff = colBuff/(float)maxRay;
                 pix[ind]=colBuff;
@@ -50,6 +50,7 @@ void Renderer::renderMono() {
     }
 
     saveToFile(pix);
+    saveToFile(depthBuffer);
     delete [] pix;
 }
 
@@ -58,6 +59,7 @@ void Renderer::renderThread() {
     float fov = tanf(deg2rad(Camera::fov*0.5f));
     float ratio = (float)width/(float)height;
     frameBuffer = new Vector3f[width*height];
+    depthBuffer = new Vector3f[width*height];
     Vector3f * pix = frameBuffer;
     Camera::cameraToWorld.multVecMatrix(Vector3f(),origin);
 
@@ -74,8 +76,24 @@ void Renderer::renderThread() {
     for (int i = 0; i < maxThread; ++i) {
         tPool[i].join();
     };
+    near=kInfinity;
+    far=0;
+    for (int pixel = 0; pixel < width*height; ++pixel) {
+        if (depthBuffer[pixel].x < near){
+            near = depthBuffer[pixel].x;
+        }else if (depthBuffer[pixel].x > far){
+            far = depthBuffer[pixel].x;
+        }
+    }
+    for (int pixel = 0; pixel < width*height; ++pixel) {
+        float Z= (((far+near)/(far-near)+((1/depthBuffer[pixel].x)*((-2.f*far*near)/(far-near))+1))/2)*255;
+        depthBuffer[pixel] = Vector3f(Z,Z,Z);
+    }
+
     saveToFile(pix);
+    saveToFile(depthBuffer,1);
     delete [] pix;
+    delete [] depthBuffer;
 }
 
 void Renderer::threadRayCast(Vector3f *framebuffer,const Vector3f & origin, const float & fov, const float &ratio,const unsigned int & offset) const {
@@ -93,7 +111,7 @@ void Renderer::threadRayCast(Vector3f *framebuffer,const Vector3f & origin, cons
                 Vector3f colBuff = Vector3f();
                 int maxRay = 1;
                 for (int rayn = 0; rayn < maxRay; ++rayn) {
-                    colBuff = colBuff+ sphereTrace(Ray(origin,dir));
+                    colBuff = colBuff+ sphereTrace(Ray(origin,dir),0,depthBuffer[ind]);
                 }
                 colBuff = colBuff/(float)maxRay;
                 framebuffer[ind]=colBuff;
@@ -103,11 +121,11 @@ void Renderer::threadRayCast(Vector3f *framebuffer,const Vector3f & origin, cons
 }
 
 
-void Renderer::saveToFile(const Vector3f *frameBuffer) {
+void Renderer::saveToFile(const Vector3f *frameBuffer,const int &offset) {
     int count = imagecount;
     auto start = std::chrono::steady_clock::now();     // start timer
 
-    std::ofstream ofs("../data/render" + std::to_string(imagecount) +".ppm", std::ios::out);
+    std::ofstream ofs("../data/render" + std::to_string(imagecount) +"_"+ std::to_string(offset) + ".ppm", std::ios::out);
     ++imagecount;
     ofs << "P6\n" << width << " " << height << "\n255\n";
     for (int i = 0; i < width*height; ++i) {
@@ -132,6 +150,7 @@ void Renderer::render() {
             break;
     }
 }
+
 
 
 inline

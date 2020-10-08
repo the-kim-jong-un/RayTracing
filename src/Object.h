@@ -7,6 +7,7 @@
 
 #include "Vector.h"
 #include "Ray.h"
+#include "Material.h"
 const float kInfinity = std::numeric_limits<float>::max();
 class Ray;
 
@@ -14,7 +15,7 @@ class Object {
 public:
     Position position;
     Vector3f color;
-
+    Material mat;
     Object();
     virtual void print() const  =0;
     virtual bool intersect(const Ray & ray, float & t) = 0;

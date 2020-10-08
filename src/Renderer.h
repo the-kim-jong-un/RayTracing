@@ -26,6 +26,11 @@ public:
     unsigned int width;
     unsigned int height;
     const unsigned int maxThread = 32;
+    static float far;
+    static float near;
+    static const unsigned int sampleAcuracy = 128;
+    static const unsigned int maxSampleDepth = 0;
+    static const unsigned int maxDepth = 2;
     static RenderMode renderMode;
     static TraceMode traceMode;
     static Vector3f backgroundColor;
@@ -36,11 +41,13 @@ public:
 
     void threadRayCast(Vector3f *framebuffer,const Vector3f & origin, const float & fov, const float &ratio, const unsigned int & offset) const;
 
-    void saveToFile(const Vector3f * frameBuffer);
+    void saveToFile(const Vector3f * frameBuffer,const int &offset=0);
 
 private:
     int imagecount=0;
     Vector3f * frameBuffer;
+    Vector3f * depthBuffer;
+
 };
 
 inline float clamp(const float & low, const float & high, const float &val);

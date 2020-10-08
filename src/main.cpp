@@ -30,6 +30,8 @@ float Camera::fov;
 Renderer::RenderMode Renderer::renderMode;
 Renderer::TraceMode Renderer::traceMode;
 Vector3f Renderer::backgroundColor;
+float Renderer::far=kInfinity;
+float Renderer::near=0;
 
 int main() {
 
@@ -38,41 +40,25 @@ int main() {
 
     Renderer * ren;
     Camera::fov=53;
-    ren = new Renderer(2048,2048, Vector3f(0), Renderer::MULTI,Renderer::SPHERETRACING);
+    ren = new Renderer(1024,1024, Vector3f(10), Renderer::MULTI,Renderer::SPHERETRACING);
     float spawnSpread = 10;
-
-
-
-    int numSpheres = 63;
+    int numSpheres = 48;
     gen.seed(time(NULL));
     for (uint32_t i = 0; i < numSpheres; ++i) {
         Vector3f randPos((0.5 - dis(gen)) * spawnSpread, (0.5 - dis(gen)) * spawnSpread, (0.5-dis(gen)) * spawnSpread);
         float randRadius =  0.5f + (float)dis(gen) * 0.5f;
-        int randcolor = dis(gen)*6;
-        Vector3f Color;
-        if(randcolor==0)
-            Color = Vector3f(255);
-        else if(randcolor ==1)
-            Color = Vector3f(255,255);
-        else if(randcolor ==2)
-            Color = Vector3f(0,255,255);
-        else if(randcolor ==3)
-            Color = Vector3f(255,0,255);
-        else if(randcolor ==4)
-            Color = Vector3f(0,255);
-        else
-            Color = Vector3f(0,0,255);
-        SceneManager::objects.push_back(new Sphere(randPos, randRadius, Color));
+        Material tmpMat(Vector3f(dis(gen)/5,dis(gen)/5,dis(gen)/5));
+        SceneManager::objects.push_back(new Sphere(randPos, randRadius, tmpMat));
     }
 
     Sphere * orig = new Sphere(Vector3f(),1,Vector3f(255,255,255));
-    SceneManager::objects.push_back(orig);
+    //SceneManager::objects.push_back(orig);
     Plane * pl = new Plane(Vector3f(0, 1, 0), Vector3f(0, -2, 0));
     SceneManager::objects.push_back(pl);
-    PointLight * testLight = new PointLight(Vector3f (-15,10,15.6),Vector3f(15, 10, 10),50000);
-    PointLight * testLight2 = new PointLight(Vector3f (-15,10,-12.6),Vector3f(1, 10, 15),5000);
+    PointLight * testLight = new PointLight(Vector3f (-15,10,15.6),Vector3f(15, 10, 10),500);
+    PointLight * testLight2 = new PointLight(Vector3f (-15,10,12.6),Vector3f(1, 10, 15),200);
     SceneManager::lights.push_back(testLight);
-    //SceneManager::lights.push_back(testLight2);
+    SceneManager::lights.push_back(testLight2);
 
 
     unsigned int fps = 60;

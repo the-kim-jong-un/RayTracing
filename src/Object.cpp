@@ -3,9 +3,11 @@
 //
 
 #include "Object.h"
+#include "Material.h"
 
 Object::Object() {
     color=Vector3f(255);
+    mat= Material();
 }
 Object::~Object() {
 

@@ -51,9 +51,10 @@ void Sphere::getSurfaceData(const Vector3f &Phit, Vector3f &Nhit, Vector3f &tex)
     tex.y = acosf(Nhit.y) / M_PI;
 }
 
-Sphere::Sphere(const Vector3f& pos,const float & radius, const Vector3f & color) {
+Sphere::Sphere(const Vector3f& pos,const float & radius, const Material & material) {
     position=pos;
-    this->color=color;
+    this->color=Vector3f();
+    mat=material;
     this->radius=radius;
 }
 

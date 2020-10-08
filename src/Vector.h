@@ -142,6 +142,10 @@ Vector3<T> crossProduct(const Vector3<T> &a, const Vector3<T> &b) {
             a.x * b.y - a.y * b.x);
 }
 
+
+
+
+
 typedef Vector3<float> Position;
 typedef Vector3<float> Vector3f;
 typedef Vector3<int> Vector3i;

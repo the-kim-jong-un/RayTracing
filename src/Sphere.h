@@ -13,7 +13,7 @@ public:
     float radius;
 
     Sphere();
-    Sphere(const Vector3f& pos, const float & radius,const Vector3f &color);
+    Sphere(const Vector3f& pos, const float & radius,const Material &material);
     ~Sphere() override;
     void print() const override;
     float getDistance(const Vector3f & from) const override;
