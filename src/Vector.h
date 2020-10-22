@@ -13,24 +13,28 @@ class Vector3 {
 public:
     T x, y, z;
 
+    ///\brief Constructeur par défaut de Vector3
     Vector3() {
         x = 0;
         y = 0;
         z = 0;
     }
 
+    ///\brief Constructeur par copie de Vector3 (depuis un autre vecteur)
     Vector3(Vector3 const &from) {
         this->x = from.x;
         this->y = from.y;
         this->z = from.z;
     }
 
+    ///\brief Constructeur par copie de Vector3 (depuis des valeurs)
     explicit Vector3(T x, T y = 0, T z = 0) {
         this->x = x;
         this->y = y;
         this->z = z;
     }
 
+    ///\brief Opérateur '=' pour la classe Vector3
     Vector3 operator=(const Vector3 &vec) {
         this->x = vec.x;
         this->y = vec.y;
@@ -42,11 +46,12 @@ public:
         return sqrtf((this->x * this->x) + (this->y * this->y) + (this->z * this->z));
     }
 
+    ///\brief Calcule la norme
     [[nodiscard]] float norm() const{
         return (this->x * this->x) + (this->y * this->y) + (this->z * this->z);
     }
 
-
+    ///\brief Normalise un vecteur
     Vector3<float> normalize() {
         return Vector3(*this / this->mag());
     }

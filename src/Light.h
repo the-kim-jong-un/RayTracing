@@ -16,6 +16,10 @@ public:
 class PointLight : public Light{
 public:
 
+    ///\brief Regle la lumiere
+    ///\param position de l'origine de la lumiere
+    ///\param angle de la lumiere
+    ///\param intensite de la lumiere
     PointLight(const Vector3f& p, const Vector3f& c, const float& i);
     Vector3f col;
     float intensity;

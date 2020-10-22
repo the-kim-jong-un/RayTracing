@@ -1,0 +1,4 @@
+/snap/clion/128/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/alban/Documents/L3/projet/raytracing
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/alban/Documents/L3/projet/raytracing/cmake-build-debug

@@ -17,6 +17,7 @@
 #include "Renderer.h"
 #include "Matrix4x4.h"
 #include "Plane.h"
+#include "Cube.h"
 
 std::random_device rd;
 std::mt19937 gen(rd());
@@ -50,6 +51,8 @@ int main() {
         Material tmpMat(Vector3f(dis(gen)/5,dis(gen)/5,dis(gen)/5));
         SceneManager::objects.push_back(new Sphere(randPos, randRadius, tmpMat));
     }
+
+
 
     Sphere * orig = new Sphere(Vector3f(),1,Vector3f(255,255,255));
     //SceneManager::objects.push_back(orig);
