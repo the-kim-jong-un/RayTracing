@@ -1,3 +1,7 @@
+//
+// Created by adrien on 18/09/2020.
+//
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
