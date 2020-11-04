@@ -1,5 +1,6 @@
 # Ray Tracing - LifProjet
 
+![Capture d'écran](data/data_render.jpg)
 
 ### GROUPE
 Constantin Magnin <br>
