@@ -18,6 +18,7 @@ public:
     ///\brief Regle la camera
     ///\param from : position de la camera
     ///\param to : endroit visé par la camera
+    ///\param dir : Indique le haut de la scène
     static Matrix4x4 lookAt(const Vector3<float> & from, const Vector3<float> & to,const Vector3f & dir=Vector3f(0,1,0));
 };
 

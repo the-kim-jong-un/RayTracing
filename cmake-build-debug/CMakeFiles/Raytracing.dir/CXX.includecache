@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/alban/Documents/L3/projet/raytracing/src/Camera.h
-Vector.h
-/home/alban/Documents/L3/projet/raytracing/src/Vector.h
-Matrix4x4.h
-/home/alban/Documents/L3/projet/raytracing/src/Matrix4x4.h
-
 /home/alban/Documents/L3/projet/raytracing/src/Cube.cpp
 Cube.h
 /home/alban/Documents/L3/projet/raytracing/src/Cube.h
@@ -20,15 +14,7 @@ Cube.h
 Object.h
 /home/alban/Documents/L3/projet/raytracing/src/Object.h
 
-/home/alban/Documents/L3/projet/raytracing/src/Light.h
-Vector.h
-/home/alban/Documents/L3/projet/raytracing/src/Vector.h
-
 /home/alban/Documents/L3/projet/raytracing/src/Material.h
-Vector.h
-/home/alban/Documents/L3/projet/raytracing/src/Vector.h
-
-/home/alban/Documents/L3/projet/raytracing/src/Matrix4x4.h
 Vector.h
 /home/alban/Documents/L3/projet/raytracing/src/Vector.h
 
@@ -40,29 +26,9 @@ Ray.h
 Material.h
 /home/alban/Documents/L3/projet/raytracing/src/Material.h
 
-/home/alban/Documents/L3/projet/raytracing/src/Plane.h
-Object.h
-/home/alban/Documents/L3/projet/raytracing/src/Object.h
-
 /home/alban/Documents/L3/projet/raytracing/src/Ray.h
 Vector.h
 /home/alban/Documents/L3/projet/raytracing/src/Vector.h
-Object.h
-/home/alban/Documents/L3/projet/raytracing/src/Object.h
-
-/home/alban/Documents/L3/projet/raytracing/src/Renderer.h
-Vector.h
-/home/alban/Documents/L3/projet/raytracing/src/Vector.h
-
-/home/alban/Documents/L3/projet/raytracing/src/SceneManager.h
-vector
--
-Object.h
-/home/alban/Documents/L3/projet/raytracing/src/Object.h
-Light.h
-/home/alban/Documents/L3/projet/raytracing/src/Light.h
-
-/home/alban/Documents/L3/projet/raytracing/src/Sphere.h
 Object.h
 /home/alban/Documents/L3/projet/raytracing/src/Object.h
 
@@ -71,44 +37,4 @@ iostream
 -
 cmath
 -
-
-/home/alban/Documents/L3/projet/raytracing/src/main.cpp
-iostream
--
-cmath
--
-thread
--
-vector
--
-random
--
-utility
--
-memory
--
-chrono
--
-ctime
--
-immintrin.h
-/home/alban/Documents/L3/projet/raytracing/src/immintrin.h
-Vector.h
-/home/alban/Documents/L3/projet/raytracing/src/Vector.h
-Camera.h
-/home/alban/Documents/L3/projet/raytracing/src/Camera.h
-Ray.h
-/home/alban/Documents/L3/projet/raytracing/src/Ray.h
-SceneManager.h
-/home/alban/Documents/L3/projet/raytracing/src/SceneManager.h
-Sphere.h
-/home/alban/Documents/L3/projet/raytracing/src/Sphere.h
-Renderer.h
-/home/alban/Documents/L3/projet/raytracing/src/Renderer.h
-Matrix4x4.h
-/home/alban/Documents/L3/projet/raytracing/src/Matrix4x4.h
-Plane.h
-/home/alban/Documents/L3/projet/raytracing/src/Plane.h
-Cube.h
-/home/alban/Documents/L3/projet/raytracing/src/Cube.h
 

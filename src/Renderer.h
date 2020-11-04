@@ -34,6 +34,8 @@ public:
     static RenderMode renderMode;
     static TraceMode traceMode;
     static Vector3f backgroundColor;
+
+    ///\brief Crée le rendu à enregistrer
     Renderer(const int & width, const int& height,const Vector3f & BG=Vector3f(200,200,200),const RenderMode & =MONO, const TraceMode & = RAYTRACING);
     void render();
     void renderMono();
@@ -41,6 +43,7 @@ public:
 
     void threadRayCast(Vector3f *framebuffer,const Vector3f & origin, const float & fov, const float &ratio, const unsigned int & offset) const;
 
+    ///\brief Enregistre la scène dans un fichier
     void saveToFile(const Vector3f * frameBuffer,const int &offset=0);
 
 private:

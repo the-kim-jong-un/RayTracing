@@ -2,7 +2,7 @@ var indexSectionsWithContent =
 {
   0: "cglmnoprsv~",
   1: "clmoprsv",
-  2: "cglmnopsv~"
+  2: "cglmnoprsv~"
 };
 
 var indexSectionNames =

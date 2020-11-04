@@ -11,24 +11,6 @@ Cube::Cube(const Vector3f &_corner) : corner(_corner) {}
 Cube::~Cube()= default;
 
 bool Cube::intersect(const Ray & ray, float &t){
-   /* float t0,t1;
-    Vector3f tmp= position - ray.origin;
-    float radius2 = radius*radius;
-    float tca = tmp.dotProduct(ray.direction);
-    if (tca <0) {
-        return false;
-    }
-    float d2 = tmp.dotProduct(tmp) - tca * tca;
-    if (d2 > radius2) return false;
-    float thc = sqrtf(radius2 - d2);
-    t0 = tca - thc;
-    t1 = tca + thc;
-
-    if (t0 > t1) std::swap(t0, t1);
-
-    if (t0 < 0) {
-        t0 = t1; // if t0 is negative, let's use t1 instead
-        if (t0 < 0) return false; // both t0 and t1 are negative*/
 
 }
 
@@ -49,7 +31,8 @@ void Cube::getSurfaceData(const Vector3f &Phit, Vector3f &Nhit, Vector3f &tex) c
 
 
 void Cube::print() const {
-    std::cout<< "corner = "<<'\n';
+    std::cout<< "corner = ";
+    corner.print() ;
 
 }
 
@@ -69,7 +52,7 @@ float Cube::getDistance(const Vector3f &from) const {
     float scale = 1;
 
 #endif
-    //fromObjectSpace *= 1.f / scale;
+    fromObjectSpace = fromObjectSpace * (1.f / scale);
     fromObjectSpace.x = std::fabs(fromObjectSpace.x);
     fromObjectSpace.y = std::fabs(fromObjectSpace.y);
     fromObjectSpace.z = std::fabs(fromObjectSpace.z);
@@ -83,7 +66,7 @@ float Cube::getDistance(const Vector3f &from) const {
     dmax.z = std::max(dmax.z, 0.f);
 
     // don't forget to apply the scale back
-    //return scale * (std::min(std::max(d.x, std::max(d.y, d.z)), 0.f) + dmax/*.length()*/);
+    return scale * (std::min(std::max(d.x, std::max(d.y, d.z)), 0.f) + dmax.length());
 
 }
 

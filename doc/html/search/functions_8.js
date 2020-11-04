@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vector3',['Vector3',['../classVector3.html#a54f99f4211298d5245ea578bdd5143cc',1,'Vector3::Vector3()'],['../classVector3.html#a8709882d74cc1e6c55d41e9127a05aee',1,'Vector3::Vector3(Vector3 const &amp;from)'],['../classVector3.html#ae3fb0a4b09f6c6664644108d35f58c4d',1,'Vector3::Vector3(T x, T y=0, T z=0)']]]
+  ['savetofile',['saveToFile',['../classRenderer.html#ab007ac7945b205cdb93c0eed45753a82',1,'Renderer']]],
+  ['sphere',['Sphere',['../classSphere.html#a890a63ff583cb88e7ec4e840b4ef5eb9',1,'Sphere::Sphere()'],['../classSphere.html#ad2eae498aef8d5e6838a7a651a898d03',1,'Sphere::Sphere(const Vector3f &amp;pos, const float &amp;radius, const Material &amp;material)']]]
 ];
