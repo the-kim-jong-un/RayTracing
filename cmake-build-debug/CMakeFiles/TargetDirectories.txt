@@ -1,3 +1,0 @@
-/home/alban/Documents/L3/projet/raytracing/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/alban/Documents/L3/projet/raytracing/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/alban/Documents/L3/projet/raytracing/cmake-build-debug/CMakeFiles/Raytracing.dir

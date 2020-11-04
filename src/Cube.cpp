@@ -66,7 +66,7 @@ float Cube::getDistance(const Vector3f &from) const {
     dmax.z = std::max(dmax.z, 0.f);
 
     // don't forget to apply the scale back
-    return scale * (std::min(std::max(d.x, std::max(d.y, d.z)), 0.f) + dmax.length());
+    //return scale * (std::min(std::max(d.x, std::max(d.y, d.z)), 0.f) + dmax.length());
 
 }
 
