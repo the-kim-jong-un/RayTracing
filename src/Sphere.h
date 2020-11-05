@@ -16,9 +16,9 @@ public:
     Sphere();
 
     ///\brief Constructeur par copie de Sphere
-    ///\param position de la sphere
-    ///\param rayon de la sphere
-    ///\param matériau de la sphere
+    ///\param pos : position de la sphere
+    ///\param radius : rayon de la sphere
+    ///\param material : matériau de la sphere
     Sphere(const Vector3f& pos, const float & radius,const Material &material);
 
     ///\brief Destructeur de Sphere
@@ -34,6 +34,9 @@ public:
     bool intersect(const Ray& ray, float&t) override;
 
     ///\brief Calcule la normale de la sphere
+    ///\param Phit : Point touché par le rayon
+    ///\param Nhit : Normale du point est touché
+    ///\param tex : texture du point touché
     void getSurfaceData(const Vector3f &Phit, Vector3f &Nhit, Vector3f &tex) const override ;
 };
 

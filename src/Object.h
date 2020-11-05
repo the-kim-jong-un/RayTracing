@@ -34,9 +34,9 @@ public:
     virtual float getDistance(const Vector3f & from) const =0;
 
     ///\brief Calcule la normale
-    /// @param Phit
-    /// @param Nhit
-    /// @param tex
+    ///\param Phit : Point touché par le rayon
+    ///\param Nhit : Normale du point est touché
+    ///\param tex : texture du point touché
     virtual void getSurfaceData(const Vector3f &Phit, Vector3f &Nhit, Vector3f &tex) const =0 ;
 
     ///\brief Destructeur de Object
