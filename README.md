@@ -1,11 +1,13 @@
 # Ray Tracing - LifProjet
 
-![Capture d'écran](data/data_render.jpg)
+![Capture d'écran](data/data_render.jpg) <br>
+Image d’une scène de notre application où l’on peut distinguer des sphères de différentes couleurs avec réflections sur les sphères et le sol.
+
 
 ### GROUPE
-Constantin Magnin <br>
-Alban Saint-Sorny <br>
-Como Adrien
+Constantin Magnin p1806593 <br>
+Alban Saint-Sorny p1804792 <br>
+Como Adrien       p1709079 <br>
 
 
 ### Utilite
