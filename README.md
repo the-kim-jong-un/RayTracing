@@ -19,7 +19,7 @@ Permettre d'executer du lancer de rayon, sur des scènes composées d'objet simp
 ### Installation et execution
 ----
 
-A REMPLIR !!!
+Avoir un IDE utilisant CMakeList comme CLion et run à partir de l'IDE.
 
 
 ### Dependances
