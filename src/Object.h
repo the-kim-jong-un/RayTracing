@@ -11,6 +11,8 @@
 const float kInfinity = std::numeric_limits<float>::max();
 class Ray;
 
+
+/// @brief Classe Abstraite d'objets primitif
 class Object {
 public:
     Position position;
@@ -22,12 +24,19 @@ public:
 
     ///\brief Affichage console
     virtual void print() const  =0;
+    /// @brief test d'intersection
+    /// @return vrai si le rayon entre en intersetion avec la surface de l'objet
     virtual bool intersect(const Ray & ray, float & t) = 0;
 
     ///\brief Calcule l'écart entre l'origine de la lumiere et la surface de l'objet
+    /// @param from position
+    /// @return distance entre @param from et la surface de l'objet
     virtual float getDistance(const Vector3f & from) const =0;
 
     ///\brief Calcule la normale
+    /// @param Phit
+    /// @param Nhit
+    /// @param tex
     virtual void getSurfaceData(const Vector3f &Phit, Vector3f &Nhit, Vector3f &tex) const =0 ;
 
     ///\brief Destructeur de Object

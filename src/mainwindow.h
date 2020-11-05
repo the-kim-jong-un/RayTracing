@@ -15,6 +15,7 @@
 #include <QFileDialog>
 #include <QCommonStyle>
 #include <QDesktopWidget>
+#include <QApplication>
 
 
 QT_BEGIN_NAMESPACE

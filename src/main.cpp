@@ -6,6 +6,7 @@
 #include <utility>
 #include <memory>
 #include <chrono>
+#include <QApplication>
 #include <ctime>
 #include "immintrin.h"
 
@@ -18,6 +19,7 @@
 #include "Matrix4x4.h"
 #include "Plane.h"
 #include "Cube.h"
+#include "mainwindow.h"
 
 std::random_device rd;
 std::mt19937 gen(rd());
@@ -34,7 +36,7 @@ Vector3f Renderer::backgroundColor;
 float Renderer::far=kInfinity;
 float Renderer::near=0;
 
-int main() {
+int main(int argc, char *argv[]) {
 
     //std::chrono::steady_clock sc;
     auto start = std::chrono::steady_clock::now();
@@ -43,7 +45,7 @@ int main() {
     Camera::fov=53;
     ren = new Renderer(1024,1024, Vector3f(10), Renderer::MULTI,Renderer::SPHERETRACING);
     float spawnSpread = 10;
-    int numSpheres = 48;
+    int numSpheres = 16;
     gen.seed(time(NULL));
     for (uint32_t i = 0; i < numSpheres; ++i) {
         Vector3f randPos((0.5 - dis(gen)) * spawnSpread, (0.5 - dis(gen)) * spawnSpread, (0.5-dis(gen)) * spawnSpread);
@@ -54,12 +56,16 @@ int main() {
 
 
 
-    Sphere * orig = new Sphere(Vector3f(),1,Vector3f(255,255,255));
-    //SceneManager::objects.push_back(orig);
-    Plane * pl = new Plane(Vector3f(0, 1, 0), Vector3f(0, -2, 0));
+
+
+    auto * orig = new Cube(Vector3f(1,1,2));
+    orig->mat= Material(Vector3f(0.1,0.1,0.5),0.4,0.02);
+    orig->mat.matReflection=1.0f;
+    SceneManager::objects.push_back(orig);
+    auto * pl = new Plane(Vector3f(0, 1, 0), Vector3f(0, -2, 0));
     SceneManager::objects.push_back(pl);
-    PointLight * testLight = new PointLight(Vector3f (-15,10,15.6),Vector3f(15, 10, 10),500);
-    PointLight * testLight2 = new PointLight(Vector3f (-15,10,12.6),Vector3f(1, 10, 15),200);
+    auto * testLight = new PointLight(Vector3f (-15,10,15.6),Vector3f(15, 10, 10),500);
+    auto * testLight2 = new PointLight(Vector3f (-15,10,12.6),Vector3f(1, 10, 15),200);
     SceneManager::lights.push_back(testLight);
     SceneManager::lights.push_back(testLight2);
 
@@ -69,10 +75,11 @@ int main() {
     std::cout<< "render mode : " << Renderer::renderMode << '\n';
 
 
+
     double rawDelay = 1 / (double)60;
     double delay=0;
     double deltaTime=0;
-    Vector3f lookAtVec = Vector3f(-20, 5, 0);
+    Vector3f lookAtVec = Vector3f(-20, 10, 10);
 
     for (int i=0;i<frames;i++){
         auto fpsStart = std::chrono::high_resolution_clock::now();
@@ -94,6 +101,11 @@ int main() {
             std::this_thread::sleep_for(std::chrono::milliseconds((int) delay));
         } else deltaTime=elapsed.count()/1;
     }
+    QApplication a(argc,argv);
+    MainWindow mainWindow;
+    mainWindow.show();
+    a.exec();
+
 
     SceneManager::clear();
 

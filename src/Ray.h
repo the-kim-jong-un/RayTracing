@@ -10,16 +10,30 @@
 #include "Object.h"
 class Object;
 
+/// @brief Classe des rayons
 class Ray {
 public:
     Position origin;
     Vector3f direction;
     Ray();
+    /// @brief Constructeur de Ray
+    /// @param position origine du rayon
+    /// @param direction direction du rayon
     Ray(const Position & position, const Vector3f & direction);
 };
 
+/// @brief fonction de tracing
+/// @param ray Rayon à tracer
+/// @param depth maximum de profondeur du rayon
+/// @param buffer de profondeur
+/// @return la couleur sur pixel
 Vector3f sphereTrace(const Ray &ray,const unsigned int & depth, Vector3f &dBuffer);
+
+/// @brief coloration par nombre de pas pour sphereTrace
+/// @param steps nombre de pas
+/// @return la couleur
 Vector3f stepColoring(const unsigned int& steps);
+
 bool traceRay(const Ray &ray, float &inter, Object *& hitObj);
 Vector3f castRay(const Ray& ray);
 Vector3f shade(const Ray &ray, const float &t, Object * interObject,const unsigned int & depth);

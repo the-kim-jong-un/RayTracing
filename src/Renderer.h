@@ -29,7 +29,7 @@ public:
     static float far;
     static float near;
     static const unsigned int sampleAcuracy = 128;
-    static const unsigned int maxSampleDepth = 0;
+    static const unsigned int maxSampleDepth = 2;
     static const unsigned int maxDepth = 2;
     static RenderMode renderMode;
     static TraceMode traceMode;

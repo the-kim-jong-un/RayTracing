@@ -69,7 +69,7 @@ Vector3f sphereTrace(const Ray &ray,const unsigned int & depth, Vector3f &dBuffe
     unsigned int steps=0;
     Object *interObject = nullptr;
     if (depth>Renderer::maxDepth) return Vector3f();
-    while (t<maxDist && steps <255) {
+    while (t<maxDist && steps <512) {
         minDist=kInfinity;
         Vector3f from = ray.origin + t* ray.direction;
         for(auto objects : SceneManager::objects){
@@ -146,8 +146,8 @@ Vector3f shade(const Ray &ray, const float &t, Object * interObject,const unsign
         Vector3f R= reflect(ray.direction,norm);
         Vector3f tbuff;
         reflection= reflection + (sphereTrace(Ray(p,R),depth+1,tbuff));
-        Vector3f tmpdiff=Vector3f(diffuse.x*1, diffuse.y, diffuse.z);
-        Vector3f tmpspec=Vector3f(specular.x * 1,specular.y,specular.z);
+        Vector3f tmpdiff=Vector3f(diffuse.x, diffuse.y, diffuse.z);
+        Vector3f tmpspec=Vector3f(specular.x,specular.y,specular.z);
         reflection = reflection / ((float)Renderer::maxDepth);
         hitCol = tmpdiff * interObject->mat.matDiffuse + tmpspec * interObject->mat.matSpecular + reflection * interObject->mat.matReflection;
         //Vector3f clampedColor = Vector3f(clamp(0,255,hitCol.x),clamp(0,255,hitCol.y),clamp(0,255,hitCol.z));
@@ -171,7 +171,7 @@ Vector3f shade(const Ray &ray, const float &t, Object * interObject,const unsign
         }
     }
     indirectLightningCol = indirectLightningCol /(float)Renderer::sampleAcuracy;
-    //hitCol = ((hitCol / (float)1)+2.f * indirectLightningCol * 0.18f);// /(float)2;
+    hitCol = ((hitCol / (float)1)+2.f * indirectLightningCol * 0.18f);// /(float)2;
     //hitCol=indirectLightningCol * 2.f;
     hitCol = Vector3f(clamp(0,255,hitCol.x),clamp(0,255,hitCol.y),clamp(0,255,hitCol.z));
     return hitCol;
