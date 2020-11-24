@@ -3,6 +3,15 @@
 ![Capture d'écran](data/data_render.jpg) <br>
 Image d’une scène de notre application où l’on peut distinguer des sphères de différentes couleurs avec réflections sur les sphères et le sol.
 
+### Presentation de l'agorithme de Ray-Tracing
+
+Le Ray-Tracing est une technique permettant de générer une image en suivant le parcours de la lumière. <br>
+
+Elle consiste à simuler le parcours inverse de la lumière : on calcule les éclairages de la caméra vers les objets puis vers les lumières, alors que dans la réalité la lumière va de la scène vers l'œil. <br>
+
+Cette technique permet de produire des images de très haute qualité mais à un coût de calcul plus important que d’autre algorithme de calcul.<br>
+
+
 
 ### GROUPE
 Constantin Magnin p1806593 <br>
