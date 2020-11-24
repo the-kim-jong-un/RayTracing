@@ -22,7 +22,7 @@ Como Adrien       p1709079 <br>
 ### Utilite
 ----
 
-Permettre d'executer du lancer de rayon, sur des scènes composées d'objet simple (cube et sphere) en prenant en compte reflection, refraction.
+Permettre d'executer du lancer de rayon, sur des scènes composées d'objet simple (cube, rectangle et sphere) en prenant en compte reflection, refraction.
 
 
 ### Installation et execution
