@@ -4,11 +4,11 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "iostream"
+#include "Renderer.h"
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
     setWindowTitle("Ray Tracing");
-
     initWindow();
     initArrowButtons();
     displayImage();
@@ -70,9 +70,9 @@ void MainWindow::initComboBox(){
 }
 
 void MainWindow::displayImage(){
-    QImage image("/home/adrien/wallpaper.jpg");
+    QImage image("../data/render0_0.ppm");
     ui->displayLabel->setPixmap(QPixmap::fromImage(image));
-    ui->displayLabel->setGeometry(windowWIdth*0.1,windowHeight*0.08, windowWIdth*0.8,windowHeight*0.8);
+    ui->displayLabel->setGeometry(windowWIdth*0.28,windowHeight*0.08, windowHeight*0.8,windowHeight*0.8);
     ui->displayLabel->setScaledContents(true);
 }
 
@@ -110,3 +110,30 @@ void MainWindow::downloadImage(){
 MainWindow::~MainWindow(){
     delete ui;
 }
+
+void MainWindow::updateImage(const Vector3f * pix) {
+    QImage image("../data/render0_0.ppm");
+    auto* img = new QImage(Renderer::width, Renderer::height, QImage::Format_RGB32);
+
+
+    for (int i = 0; i < Renderer::width; ++i) {
+        for (int j = 0; j < Renderer::height; ++j) {
+            int ind = i*Renderer::height+j;
+            //std::cout<<pix[ind].x<<"/"<<pix[ind].y<<"/"<<pix[ind].z<<'\n';
+
+
+            //QRgb rgb = qRgb((int)pix[ind].x,(int)pix[ind].y,(int)pix[ind].z/10);
+            //QColor col = QColor(rgb);
+            img->setPixelColor(j,i,QColor((int)pix[ind].x,(int)pix[ind].y,(int)pix[ind].z));
+            //img->setPixelColor(i,j,QColor(0,200,0));
+            //img->setPixelColor(i,j,col);
+        }
+    }
+
+    //img->loadFromData(*Renderer::Qarr,"ppm");
+    //ui->displayLabel->setPixmap(QPixmap::loadFromData(Renderer::Qarr,"ppm"));
+
+    ui->displayLabel->setPixmap(QPixmap::fromImage(*img));
+    delete img;
+}
+

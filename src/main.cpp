@@ -35,6 +35,22 @@ Renderer::TraceMode Renderer::traceMode;
 Vector3f Renderer::backgroundColor;
 float Renderer::far=kInfinity;
 float Renderer::near=0;
+bool Renderer::running=false;
+MainWindow * Renderer::mw;
+QByteArray * Renderer::Qarr;
+unsigned int Renderer::width;
+unsigned int Renderer::height;
+
+void testlaunchWindow(int argc, char *argv[]){
+    QApplication a(argc,argv);
+    //MainWindow mainWindow;
+    Renderer::mw = new MainWindow;
+    //mainWindow.show();
+    Renderer::mw->show();
+    a.exec();
+}
+
+
 
 int main(int argc, char *argv[]) {
 
@@ -42,10 +58,14 @@ int main(int argc, char *argv[]) {
     auto start = std::chrono::steady_clock::now();
 
     Renderer * ren;
+    std::thread win(&testlaunchWindow,argc,argv);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds((int) 700));
+
     Camera::fov=53;
-    ren = new Renderer(1024,1024, Vector3f(10), Renderer::MULTI,Renderer::SPHERETRACING);
-    float spawnSpread = 10;
-    int numSpheres = 16;
+    ren = new Renderer(512,512, Vector3f(10), Renderer::MULTI,Renderer::SPHERETRACING);
+    float spawnSpread = 12;
+    int numSpheres = 32;
     gen.seed(time(NULL));
     for (uint32_t i = 0; i < numSpheres; ++i) {
         Vector3f randPos((0.5 - dis(gen)) * spawnSpread, (0.5 - dis(gen)) * spawnSpread, (0.5-dis(gen)) * spawnSpread);
@@ -63,11 +83,22 @@ int main(int argc, char *argv[]) {
     orig->mat.matReflection=1.0f;
     SceneManager::objects.push_back(orig);
     auto * pl = new Plane(Vector3f(0, 1, 0), Vector3f(0, -2, 0));
+    pl->mat.albedo=Vector3f(0.9,0.9,0.9);
+    pl->mat.matReflection=0.f;
+    auto * wall1=new Plane(Vector3f(0, 0, 1), Vector3f(0, 0, -25));
+    auto * wall2=new Plane(Vector3f(0, -1, 0), Vector3f(0, 20,0));
+    auto * wall3=new Plane(Vector3f(-1, 0, 0), Vector3f(25,0,0));
+    wall1->mat=Material(Vector3f(0,0.5f,0),0.8,0.08,0,4);
+    wall2->mat=Material(Vector3f(0,0,0.5f),0.8,0.08,0,4);
+    wall3->mat=Material(Vector3f(0.5f,0,0),0.8,0.08,0,4);
     SceneManager::objects.push_back(pl);
-    auto * testLight = new PointLight(Vector3f (-15,10,15.6),Vector3f(15, 10, 10),500);
+    SceneManager::objects.push_back(wall1);
+    SceneManager::objects.push_back(wall2);
+    SceneManager::objects.push_back(wall3);
+    auto * testLight = new PointLight(Vector3f (-15,10,15.6),Vector3f(15, 10, 10),400);
     auto * testLight2 = new PointLight(Vector3f (-15,10,12.6),Vector3f(1, 10, 15),200);
     SceneManager::lights.push_back(testLight);
-    SceneManager::lights.push_back(testLight2);
+    //SceneManager::lights.push_back(testLight2);
 
 
     unsigned int fps = 60;
@@ -101,10 +132,12 @@ int main(int argc, char *argv[]) {
             std::this_thread::sleep_for(std::chrono::milliseconds((int) delay));
         } else deltaTime=elapsed.count()/1;
     }
+
+    win.join();
     QApplication a(argc,argv);
     MainWindow mainWindow;
-    mainWindow.show();
-    a.exec();
+    //mainWindow.show();
+    //a.exec();
 
 
     SceneManager::clear();

@@ -16,7 +16,7 @@
 #include <QCommonStyle>
 #include <QDesktopWidget>
 #include <QApplication>
-
+#include "Vector.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,6 +30,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    static QPixmap * QPM;
+    void updateImage(const Vector3f * pix);
+    void displayImage();
+
 private slots :
     void initWindow();
     void initButtons();
@@ -39,7 +43,7 @@ private slots :
 
     void sceneChoice();
     void sliderValue();
-    void displayImage();
+
 
     void shading();
     void sphereMarching();

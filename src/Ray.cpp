@@ -132,6 +132,7 @@ Vector3f shade(const Ray &ray, const float &t, Object * interObject,const unsign
             lightDir= normalize(lightDir);
             bool shadow = 1 - sphereTraceShadow(Ray(p,lightDir), sqrtf(dist2));
             diffuse= diffuse+ (float)shadow * interObject->mat.albedo * light->intensity * std::max(0.f,norm.dotProduct(1.0f*lightDir));
+            //diffuse= diffuse+ (float)shadow * interObject->mat.albedo * light->intensity * std::max(0.f,norm.dotProduct(1.0f*lightDir));
             Vector3f R= reflect(lightDir,norm);
             float tmp= (float)shadow* light->intensity * std::pow(std::max(0.f,R.dotProduct(1.f*ray.direction)),interObject->mat.n);
             specular= specular + Vector3f(tmp,tmp,tmp);
@@ -171,8 +172,12 @@ Vector3f shade(const Ray &ray, const float &t, Object * interObject,const unsign
         }
     }
     indirectLightningCol = indirectLightningCol /(float)Renderer::sampleAcuracy;
-    hitCol = ((hitCol / (float)1)+2.f * indirectLightningCol * 0.18f);// /(float)2;
-    //hitCol=indirectLightningCol * 2.f;
+    hitCol = ((hitCol / (float)1)+2.f * Vector3f(indirectLightningCol.x * interObject->mat.albedo.x,
+                                                 indirectLightningCol.y * interObject->mat.albedo.y,
+                                                 indirectLightningCol.z * interObject->mat.albedo.z)*1.f);// 0.18f);// /(float)2;
+    //hitCol=indirectLightningCol * 1.f;
+    //hitCol = ((hitCol / (float)1)+2.f * indirectLightningCol* 0.18f);
+    //hitCol = (hitCol + indirectLightningCol) * interObject->mat.albedo;
     hitCol = Vector3f(clamp(0,255,hitCol.x),clamp(0,255,hitCol.y),clamp(0,255,hitCol.z));
     return hitCol;
 }

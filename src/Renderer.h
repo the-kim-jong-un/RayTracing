@@ -7,7 +7,7 @@
 
 
 #include "Vector.h"
-
+#include "mainwindow.h"
 
 
 
@@ -23,17 +23,20 @@ public:
         SPHERETRACING
     };
 
-    unsigned int width;
-    unsigned int height;
+    static unsigned int width;
+    static unsigned int height;
     const unsigned int maxThread = 32;
     static float far;
     static float near;
-    static const unsigned int sampleAcuracy = 128;
-    static const unsigned int maxSampleDepth = 2;
+    static const unsigned int sampleAcuracy = 1024;
+    static const unsigned int maxSampleDepth = 1;
     static const unsigned int maxDepth = 2;
     static RenderMode renderMode;
     static TraceMode traceMode;
     static Vector3f backgroundColor;
+    static bool running;
+    static MainWindow * mw;
+    static QByteArray * Qarr;
 
     ///\brief Crée le rendu à enregistrer
     Renderer(const int & width, const int& height,const Vector3f & BG=Vector3f(200,200,200),const RenderMode & =MONO, const TraceMode & = RAYTRACING);
@@ -45,10 +48,13 @@ public:
 
     ///\brief Enregistre la scène dans un fichier
     void saveToFile(const Vector3f * frameBuffer,const int &offset=0);
+    void permSave(const Vector3f * frameBuffer);
 
 private:
+
     int imagecount=0;
     Vector3f * frameBuffer;
+    //QByteArray * Qarr;
     Vector3f * depthBuffer;
 
 };

@@ -11,7 +11,7 @@
 class Plane : public Object {
 public:
     Vector3f n;
-    Vector3f poinOnPlane;
+    Vector3f pointOnPlane;
 
     Plane(const Vector3f &nn,const Vector3f &pp);
     float getDistance(const Vector3f &from) const override;

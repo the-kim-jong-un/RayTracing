@@ -6,6 +6,7 @@
 #include "SceneManager.h"
 #include "Camera.h"
 #include "immintrin.h"
+#include "mainwindow.h"
 #include <thread>
 #include <iostream>
 #include <ostream>
@@ -61,7 +62,12 @@ void Renderer::renderThread() {
     frameBuffer = new Vector3f[width*height];
     depthBuffer = new Vector3f[width*height];
     Vector3f * pix = frameBuffer;
+    Qarr = new QByteArray;
     Camera::cameraToWorld.multVecMatrix(Vector3f(),origin);
+
+    running=true;
+    std::thread tSave(&Renderer::permSave,this,frameBuffer);
+    //tSave.detach();
 
     std::thread tPool[maxThread];
     for (int j = 0; j < maxThread; ++j) {
@@ -72,6 +78,7 @@ void Renderer::renderThread() {
              ratio,
              j);
     }
+
 
     for (int i = 0; i < maxThread; ++i) {
         tPool[i].join();
@@ -89,10 +96,11 @@ void Renderer::renderThread() {
         float Z= (((far+near)/(far-near)+((1/depthBuffer[pixel].x)*((-2.f*far*near)/(far-near))+1))/2)*255;
         depthBuffer[pixel] = Vector3f(Z,Z,Z);
     }
-
+    running= false;
+    tSave.join();
     saveToFile(pix);
-    saveToFile(depthBuffer,1);
-    delete [] pix;
+    //saveToFile(depthBuffer,1);
+    //delete [] pix;
     delete [] depthBuffer;
 }
 
@@ -126,7 +134,7 @@ void Renderer::saveToFile(const Vector3f *frameBuffer,const int &offset) {
     auto start = std::chrono::steady_clock::now();     // start timer
 
     std::ofstream ofs("../data/render" + std::to_string(imagecount) +"_"+ std::to_string(offset) + ".ppm", std::ios::out);
-    ++imagecount;
+    //++imagecount;
     ofs << "P6\n" << width << " " << height << "\n255\n";
     for (int i = 0; i < width*height; ++i) {
         char r= (char)(int)frameBuffer[i].x;
@@ -151,7 +159,13 @@ void Renderer::render() {
     }
 }
 
-
+void Renderer::permSave(const Vector3f *pix) {
+    while (running) {
+        //saveToFile(frameBuffer);
+        //Qarr->clear();
+        mw->updateImage(frameBuffer);
+    }
+}
 
 inline
 float clamp(const float & low, const float & high, const float &val){
