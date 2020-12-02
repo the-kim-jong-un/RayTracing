@@ -1,6 +1,6 @@
 # Ray Tracing - LifProjet
 
-![Capture d'écran](data/data_render.jpg) <br>
+![Capture d'écran](data/render0_0.jpg) <br>
 Image d’une scène de notre application où l’on peut distinguer des sphères de différentes couleurs avec réflections sur les sphères et le sol.
 
 ### Presentation de l'agorithme de Ray-Tracing
@@ -35,3 +35,9 @@ Avoir un IDE utilisant CMakeList comme CLion et run à partir de l'IDE.
 ----
 
 Ce code utilise QT : https://www.qt.io/download
+
+### Autre captures
+----
+![Capture d'écran](data/img_1.jpg) <br>
+![Capture d'écran](data/img_2.jpg) <br>
+![Capture d'écran](data/img_3.jpg) <br>
