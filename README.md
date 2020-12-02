@@ -39,5 +39,5 @@ Ce code utilise QT : https://www.qt.io/download
 ### Autre captures
 ----
 ![Capture d'écran](data/img_1.jpg) <br>
-![Capture d'écran](data/img_2.jpg) <br>
-![Capture d'écran](data/img_3.jpg) <br>
+![Capture d'écran](data/img_2.png) <br>
+![Capture d'écran](data/img_3.png) <br>
