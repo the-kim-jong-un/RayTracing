@@ -15,6 +15,9 @@ public:
     static std::vector<Object*> objects;
     static std::vector<PointLight*> lights;
 
+    SceneManager();
+    static void addObject(Object * ob);
+    static void addLight(PointLight *ob);
     static void clear();
 };
 

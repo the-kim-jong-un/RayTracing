@@ -43,7 +43,7 @@ Vector3<T> operator*(Vector3<T> &vec, const T &n) {
 
 template<typename T>
 Vector3<T> operator+=(Vector3<T> from, const Vector3<T> &add)  {
-    return from + add;
+    return from + addObject;
 }
 
 template<typename T>

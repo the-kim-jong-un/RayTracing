@@ -61,15 +61,15 @@ bool traceRay(const Ray &ray, float &inter, Object *& hitObj) {
 }
 
 Vector3f sphereTrace(const Ray &ray,const unsigned int & depth, Vector3f &dBuffer) {
-    const float maxDist=255.0f;
+    const float maxDist=128.0f;
     float minDist = kInfinity;
-    const double limit=55e-6;
+    const double limit=15e-5;
     float t=0;
     float glowDist;
     unsigned int steps=0;
     Object *interObject = nullptr;
     if (depth>Renderer::maxDepth) return Vector3f();
-    while (t<maxDist && steps <512) {
+    while (t<maxDist && steps <2048) {
         minDist=kInfinity;
         Vector3f from = ray.origin + t* ray.direction;
         for(auto objects : SceneManager::objects){
@@ -172,9 +172,12 @@ Vector3f shade(const Ray &ray, const float &t, Object * interObject,const unsign
         }
     }
     indirectLightningCol = indirectLightningCol /(float)Renderer::sampleAcuracy;
-    hitCol = ((hitCol / (float)1)+2.f * Vector3f(indirectLightningCol.x * interObject->mat.albedo.x,
-                                                 indirectLightningCol.y * interObject->mat.albedo.y,
-                                                 indirectLightningCol.z * interObject->mat.albedo.z)*1.f);// 0.18f);// /(float)2;
+    if (Renderer::sampleAcuracy>0) {
+        hitCol = ((hitCol / (float) 1) + 1.f * Vector3f(indirectLightningCol.x * interObject->mat.albedo.x,
+                                                        indirectLightningCol.y * interObject->mat.albedo.y,
+                                                        indirectLightningCol.z * interObject->mat.albedo.z) *
+                                         1.f);// 0.18f);// /(float)2;
+    }
     //hitCol=indirectLightningCol * 1.f;
     //hitCol = ((hitCol / (float)1)+2.f * indirectLightningCol* 0.18f);
     //hitCol = (hitCol + indirectLightningCol) * interObject->mat.albedo;

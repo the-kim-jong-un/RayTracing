@@ -48,7 +48,11 @@ float Cube::getDistance(const Vector3f &from) const {
     worldToObject.multVecMatrix(from, fromObjectSpace);
 
 #else
-    Vector3f fromObjectSpace = from;
+    Vector3f copypos=Vector3f(position);
+    Vector3f copyFrom=Vector3f(from);
+    Vector3f fromObjectSpace = (from-position).rotateAround('x',rotation.x)
+            .rotateAround('y',rotation.y)
+            .rotateAround('z',rotation.z);
     float scale = 1;
 
 #endif
@@ -57,7 +61,7 @@ float Cube::getDistance(const Vector3f &from) const {
     fromObjectSpace.y = std::fabs(fromObjectSpace.y);
     fromObjectSpace.z = std::fabs(fromObjectSpace.z);
 
-    // now compute the distance from the point to the neares point on the surface of the object
+    // now compute the distance from the point to the nearest point on the surface of the object
     Vector3f d = fromObjectSpace - corner;
 
     Vector3f dmax = d;

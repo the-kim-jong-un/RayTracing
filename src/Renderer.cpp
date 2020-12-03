@@ -99,7 +99,7 @@ void Renderer::renderThread() {
     running= false;
     tSave.join();
     saveToFile(pix);
-    //saveToFile(depthBuffer,1);
+    saveToFile(depthBuffer,1);
     //delete [] pix;
     delete [] depthBuffer;
 }

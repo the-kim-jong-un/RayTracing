@@ -8,7 +8,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-add_executable(Raytracing src/main.cpp src/mainwindow.ui src/mainwindow.cpp src/mainwindow.h src/Object.cpp src/Object.h src/Sphere.cpp src/Sphere.h src/Vector.cpp src/Vector.h  src/Vector_2.h src/Ray.cpp src/Ray.h src/SceneManager.cpp src/SceneManager.h src/Light.cpp src/Light.h src/Renderer.cpp src/Renderer.h src/Matrix4x4.cpp src/Matrix4x4.h src/Camera.cpp src/Camera.h src/Plane.cpp src/Plane.h src/Material.cpp src/Material.h src/Cube.cpp src/Cube.h)
+add_executable(Raytracing src/main.cpp src/mainwindow.ui src/mainwindow.cpp src/mainwindow.h src/Object.cpp src/Object.h src/Sphere.cpp src/Sphere.h src/Vector.cpp src/Vector.h  src/Vector_2.h src/Ray.cpp src/Ray.h src/SceneManager.cpp src/SceneManager.h src/Light.cpp src/Light.h src/Renderer.cpp src/Renderer.h src/Matrix4x4.cpp src/Matrix4x4.h src/Camera.cpp src/Camera.h src/Plane.cpp src/Plane.h src/Material.cpp src/Material.h src/Cube.cpp src/Cube.h src/ComplexObject.cpp src/ComplexObject.h src/ComplexObjectUnion.cpp src/ComplexObjectUnion.h src/ComplexObjectSubstract.cpp src/ComplexObjectSubstract.h src/ComplexObjectIntersect.cpp src/ComplexObjectIntersect.h)
 find_package(Threads REQUIRED)
 
 find_package(Qt5Widgets REQUIRED)

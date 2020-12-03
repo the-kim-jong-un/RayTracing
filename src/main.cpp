@@ -19,6 +19,9 @@
 #include "Matrix4x4.h"
 #include "Plane.h"
 #include "Cube.h"
+#include "ComplexObjectUnion.h"
+#include "ComplexObjectSubstract.h"
+#include "ComplexObjectIntersect.h"
 #include "mainwindow.h"
 
 std::random_device rd;
@@ -58,14 +61,15 @@ int main(int argc, char *argv[]) {
     auto start = std::chrono::steady_clock::now();
 
     Renderer * ren;
+    SceneManager sc;
     std::thread win(&testlaunchWindow,argc,argv);
 
     std::this_thread::sleep_for(std::chrono::milliseconds((int) 700));
 
     Camera::fov=53;
-    ren = new Renderer(512,512, Vector3f(10), Renderer::MULTI,Renderer::SPHERETRACING);
+    ren = new Renderer(2048,2048, Vector3f(10), Renderer::MULTI,Renderer::SPHERETRACING);
     float spawnSpread = 12;
-    int numSpheres = 32;
+    int numSpheres = 0;
     gen.seed(time(NULL));
     for (uint32_t i = 0; i < numSpheres; ++i) {
         Vector3f randPos((0.5 - dis(gen)) * spawnSpread, (0.5 - dis(gen)) * spawnSpread, (0.5-dis(gen)) * spawnSpread);
@@ -78,27 +82,33 @@ int main(int argc, char *argv[]) {
 
 
 
-    auto * orig = new Cube(Vector3f(1,1,2));
-    orig->mat= Material(Vector3f(0.1,0.1,0.5),0.4,0.02);
+    auto * orig = new Cube(Vector3f(4,4,4));
+    orig->rotation=Vector3f(0,0,0);
+    orig->position=Vector3f(0,0,0);
+    orig->mat= Material(Albedo(0.1,0.1,0.8),0.4,0.02);
     orig->mat.matReflection=1.0f;
-    SceneManager::objects.push_back(orig);
-    auto * pl = new Plane(Vector3f(0, 1, 0), Vector3f(0, -2, 0));
-    pl->mat.albedo=Vector3f(0.9,0.9,0.9);
-    pl->mat.matReflection=0.f;
-    auto * wall1=new Plane(Vector3f(0, 0, 1), Vector3f(0, 0, -25));
-    auto * wall2=new Plane(Vector3f(0, -1, 0), Vector3f(0, 20,0));
-    auto * wall3=new Plane(Vector3f(-1, 0, 0), Vector3f(25,0,0));
-    wall1->mat=Material(Vector3f(0,0.5f,0),0.8,0.08,0,4);
-    wall2->mat=Material(Vector3f(0,0,0.5f),0.8,0.08,0,4);
-    wall3->mat=Material(Vector3f(0.5f,0,0),0.8,0.08,0,4);
-    SceneManager::objects.push_back(pl);
-    SceneManager::objects.push_back(wall1);
-    SceneManager::objects.push_back(wall2);
-    SceneManager::objects.push_back(wall3);
-    auto * testLight = new PointLight(Vector3f (-15,10,15.6),Vector3f(15, 10, 10),400);
-    auto * testLight2 = new PointLight(Vector3f (-15,10,12.6),Vector3f(1, 10, 15),200);
-    SceneManager::lights.push_back(testLight);
-    //SceneManager::lights.push_back(testLight2);
+    auto * sphOrig= new Sphere(Vector3f(0,0,0),4.6f,Material(Albedo(0.6)));
+    auto * midSph = new Sphere(Vector3f(0,0,0),1.f,Material(Albedo(1.f,0.f,1.f)));
+    auto * cornerCube = new Cube(Vector3f(2.5,2.5,2.5));
+    cornerCube->position=Vector3f(-3.f,3.f,3.f);
+    cornerCube->rotation=Vector3f(0,45,45);
+    auto * cpl = new ComplexObjectSubstract(orig,sphOrig);
+    auto * outSph= new Sphere(Vector3f(),5.f,Material());
+    auto * gud= new ComplexObjectIntersect(outSph,cpl);
+    auto * final= new ComplexObjectSubstract(gud,cornerCube);
+    final->mat= Material(Albedo(0.9,0.3,0.6),0.4,0.02,0.6f);
+
+
+    SceneManager::addObject(final);
+    SceneManager::addObject(midSph);
+
+
+
+
+    auto * testLight = new PointLight(Vector3f (-15,45,15.6)*0.5f,Vector3f(15, 10, 10),300);
+    auto * testLight2 = new PointLight(Vector3f (5,10,-5),Vector3f(1, 10, 15),400);
+    //SceneManager::addLight(testLight);
+    SceneManager::addLight(testLight2);
 
 
     unsigned int fps = 60;
@@ -110,11 +120,13 @@ int main(int argc, char *argv[]) {
     double rawDelay = 1 / (double)60;
     double delay=0;
     double deltaTime=0;
-    Vector3f lookAtVec = Vector3f(-20, 10, 10);
+    //Vector3f lookAtVec = Vector3f(-20, 10, 10);
+    Vector3f lookAtVec = Vector3f(-10, 9, 10) * 1.0f;
+    //Vector3f lookAtVec = Vector3f(-15, 40, 0);
 
     for (int i=0;i<frames;i++){
         auto fpsStart = std::chrono::high_resolution_clock::now();
-        lookAtVec=lookAtVec.rotateAround('y', 0.02f);
+        //lookAtVec=lookAtVec.rotateAround('y', 0.02f);
         std::cout<<"frame : "<<i<<'\n';
         Camera::cameraToWorld=Camera::lookAt(lookAtVec, Vector3f());
 
@@ -133,6 +145,10 @@ int main(int argc, char *argv[]) {
         } else deltaTime=elapsed.count()/1;
     }
 
+    auto end = std::chrono::steady_clock::now();
+    auto time_span = static_cast<std::chrono::duration<double>>(end - start);
+    std::cout<<"Rendered " <<frames<< " frames in : "<<time_span.count()<<" seconds";
+
     win.join();
     QApplication a(argc,argv);
     MainWindow mainWindow;
@@ -143,8 +159,5 @@ int main(int argc, char *argv[]) {
     SceneManager::clear();
 
     delete ren;
-    auto end = std::chrono::steady_clock::now();
-    auto time_span = static_cast<std::chrono::duration<double>>(end - start);
-    std::cout<<"Rendered " <<frames<< " frames in : "<<time_span.count()<<" seconds";
     return 0;
 }

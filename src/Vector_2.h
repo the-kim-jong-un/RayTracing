@@ -137,17 +137,17 @@ public :
         switch(axis){
             case 'x':
                 tmp.vec.at(0) = vec.at(0);
-                tmp.vec.at(0) = vec.at(1) * cos(angle) - vec.at(2) * sin(angle);
-                tmp.vec.at(0) = vec.at(1) * sin(angle) + vec.at(2) * cos(angle);
+                tmp.vec.at(0) = vec.at(1) * cosf(angle) - vec.at(2) * sinf(angle);
+                tmp.vec.at(0) = vec.at(1) * sinf(angle) + vec.at(2) * cosf(angle);
                 return tmp;
             case 'y':
-                tmp.vec.at(0) = (vec.at(0) * cos(angle)) + (vec.at(2)*sin(angle));
+                tmp.vec.at(0) = (vec.at(0) * cosf(angle)) + (vec.at(2)*sinf(angle));
                 tmp.vec.at(0) = vec.at(1);
-                tmp.vec.at(0) = (-vec.at(2) * sin(angle)) + (vec.at(2) * cos(angle));
+                tmp.vec.at(0) = (-vec.at(2) * sinf(angle)) + (vec.at(2) * cosf(angle));
                 return tmp;
             case 'z':
-                tmp.vec.at(0) = (vec.at(0) * cos(angle)) - (vec.at(1) * sin(angle));
-                tmp.vec.at(0) = (vec.at(0) * sin(angle)) + (vec.at(1) * cos(angle));
+                tmp.vec.at(0) = (vec.at(0) * cosf(angle)) - (vec.at(1) * sinf(angle));
+                tmp.vec.at(0) = (vec.at(0) * sinf(angle)) + (vec.at(1) * cosf(angle));
                 tmp.vec.at(0) = vec.at(2);
                 return tmp;
             default :

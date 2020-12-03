@@ -17,7 +17,7 @@ public:
 
     ///\brief Constructeur par copie de Cube
     ///\param _corner : Arrete du cube
-    Cube(const Vector3f &_corner);
+    explicit Cube(const Vector3f &_corner);
 
     ~Cube() override;
 
@@ -26,7 +26,7 @@ public:
 
     ///\brief Calcule la distance entre la surface du cube et l'origine de la lumiere
     ///\param from :
-    float getDistance(const Vector3f & from) const override;
+    [[nodiscard]] float getDistance(const Vector3f & from) const override;
     bool intersect(const Ray& ray, float&t) override;
 
     ///\brief Calcule les normales du cube

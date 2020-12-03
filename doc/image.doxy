@@ -1786,7 +1786,7 @@ PDF_HYPERLINKS         = YES
 
 USE_PDFLATEX           = YES
 
-# If the LATEX_BATCHMODE tag is set to YES, doxygen will add the \batchmode
+# If the LATEX_BATCHMODE tag is set to YES, doxygen will addObject the \batchmode
 # command to the generated LaTeX files. This will instruct LaTeX to keep running
 # if errors occur, instead of asking the user for help. This option is also used
 # when generating formulas in HTML.

@@ -16,6 +16,7 @@ class Ray;
 class Object {
 public:
     Position position;
+    Rotation rotation;
     Vector3f color;
     Material mat;
 

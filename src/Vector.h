@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <cassert>
 
 template<typename T>
 class Vector3 {
@@ -67,25 +68,32 @@ public:
                 x * v.y - y * v.x);
     }
 
-    Vector3<T> rotateAround(const char &axis, const float &angle) {
+    Vector3<T> rotateAround(const char &axis, const float &angle, const char &degOrRad='d') {
         Vector3 tmp;
+        float effAngle;
+        if (degOrRad=='d'){
+            effAngle = angle * (M_PI/180);
+        }
         switch (axis) {
             case 'x':
                 tmp.x = x;
-                tmp.y = y * cosf(angle) - z * sinf(angle);
-                tmp.z = y * sinf(angle) + z * cosf(angle);
+                tmp.y = y * cosf(effAngle) - z * sinf(effAngle);
+                tmp.z = y * sinf(effAngle) + z * cosf(effAngle);
                 return tmp;
             case 'y':
-                tmp.x = (x * cosf(angle)) + (z * sinf(angle));
+                tmp.x = (x * cosf(effAngle)) + (z * sinf(effAngle));
                 tmp.y = y;
-                tmp.z = (-x * sinf(angle)) + (z * cosf(angle));
+                tmp.z = (-x * sinf(effAngle)) + (z * cosf(effAngle));
                 return tmp;
             case 'z':
-                tmp.x = (x * cosf(angle)) - (y * sinf(angle));
-                tmp.y = (x * sinf(angle)) + (y * cosf(angle));
+                tmp.x = (x * cosf(effAngle)) - (y * sinf(effAngle));
+                tmp.y = (x * sinf(effAngle)) + (y * cosf(effAngle));
                 tmp.z = z;
                 return tmp;
-
+            default:
+                std::cout<<"invalid axis in rotateAround"<<'\n';
+                assert(false);
+                return tmp;
         }
     }
 
@@ -152,6 +160,8 @@ Vector3<T> crossProduct(const Vector3<T> &a, const Vector3<T> &b) {
 
 
 typedef Vector3<float> Position;
+typedef Vector3<float> Rotation;
+typedef Vector3<float> Albedo;
 typedef Vector3<float> Vector3f;
 typedef Vector3<int> Vector3i;
 #endif //RAYTRACING_VECTOR_H
