@@ -38,6 +38,8 @@ bool traceRay(const Ray &ray, float &inter, Object *& hitObj);
 Vector3f castRay(const Ray& ray);
 Vector3f shade(const Ray &ray, const float &t, Object * interObject,const unsigned int & depth);
 Vector3f reflect(const Vector3f &I, const Vector3f &N);
+Vector3f refract(const Vector3f &I, const Vector3f &N, const float & ior);
+void fresnel(const Vector3f &I, const Vector3f &N, const float &ior, float &kr);
 bool sphereTraceShadow(const Ray &ray,const float &maxDist);
 Vector3f uniformSampleHemisphere(const float &r1, const float &r2);
 void createCoordinateSystem(const Vector3f &N, Vector3f &Nt, Vector3f &Nb);

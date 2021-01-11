@@ -15,10 +15,11 @@ public:
     ///\param mDiff : lumiere diffuse
     ///\param mRef : lumiere réflexive
     ///\param n : lumiere spéculaire
-    Material(const Vector3f & al= Vector3f(0.18,0.18,0.18) ,const float & mDif=0.8, const float & mSpec=0.08, const float &mRef=1.f, const float & n=4);
+    Material(const Vector3f & al= Vector3f(0.18,0.18,0.18) ,const float & mDif=0.8, const float & mSpec=0.08, const float &mRef=1.f, const float & n=4, const float &mRefrac =0.f);
     Vector3f albedo;
     float matDiffuse;
     float matReflection;
+    float matRefraction;
     float matSpecular, n;
 };
 
