@@ -12,7 +12,7 @@ const float kInfinity = std::numeric_limits<float>::max();
 class Ray;
 
 
-/// @brief Classe Abstraite d'objets primitif
+/// \brief Super-classe Abstraite d'objets primitif
 class Object {
 public:
     Position position;

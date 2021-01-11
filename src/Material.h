@@ -8,6 +8,7 @@
 
 #include "Vector.h"
 
+///\brief Classe des types de lumiere
 class Material {
 public:
     ///\brief Gère les types de lumières (speculaire/réflexive/diffuse)

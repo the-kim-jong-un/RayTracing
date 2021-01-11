@@ -8,11 +8,13 @@
 
 #include "Vector.h"
 
+
 class Light {
 public:
     Position origin;
 };
 
+///\brief Classe de la lumiere
 class PointLight : public Light{
 public:
 

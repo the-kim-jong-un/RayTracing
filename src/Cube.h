@@ -7,6 +7,7 @@
 
 #include "Object.h"
 
+///\brief Classe de Cube
 class Cube : public Object{
 public:
 

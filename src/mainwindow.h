@@ -22,12 +22,16 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+///\brief Classe de la fenetre QT
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
+    ///\brief Constructeur de la fenetre
     MainWindow(QWidget *parent = nullptr);
+
+    ///\brief Destructeur de la fenetre
     ~MainWindow();
 
     static QPixmap * QPM;
