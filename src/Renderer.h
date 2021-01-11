@@ -28,9 +28,9 @@ public:
     const unsigned int maxThread = 32;
     static float far;
     static float near;
-    static const unsigned int sampleAcuracy = 2048;
+    static const unsigned int sampleAcuracy = 0;
     static const unsigned int maxSampleDepth = 1;
-    static const unsigned int maxDepth = 2;
+    static const unsigned int maxDepth = 4;
     static RenderMode renderMode;
     static TraceMode traceMode;
     static Vector3f backgroundColor;
@@ -54,7 +54,6 @@ private:
 
     int imagecount=0;
     Vector3f * frameBuffer;
-    //QByteArray * Qarr;
     Vector3f * depthBuffer;
 
 };

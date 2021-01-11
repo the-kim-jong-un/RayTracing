@@ -79,7 +79,9 @@ Vector3f sphereTrace(const Ray &ray,const unsigned int & depth, Vector3f &dBuffe
                 interObject=objects;
             }
         }
-
+        if(minDist<0){
+            minDist *= -1;
+        }
         if (minDist<= limit*t){
             //return stepColoring(steps);
             /*
@@ -98,6 +100,7 @@ Vector3f sphereTrace(const Ray &ray,const unsigned int & depth, Vector3f &dBuffe
             return shade(ray,t,interObject,depth);// /(float)((255 - steps)/255);
         }
         t+=minDist;
+        //std::cout<<t<<'\n';
         ++steps;
     }
     dBuffer=Vector3f(1,1,1)*(maxDist);
@@ -107,7 +110,6 @@ Vector3f sphereTrace(const Ray &ray,const unsigned int & depth, Vector3f &dBuffe
 Vector3f stepColoring(const unsigned int &steps) {
 
     float greyscale=255 - clamp(0,255,steps*6);
-    //std::cout<<steps<<"//"<<greyscale<<'\n';
     return Vector3f(greyscale,greyscale,greyscale);
 }
 
@@ -124,11 +126,12 @@ Vector3f shade(const Ray &ray, const float &t, Object * interObject,const unsign
     Vector3f diffuse;
     Vector3f specular=Vector3f();
     Vector3f reflection;
+    Vector3f refraction;
     Vector3f indirectLightningCol;
     for(auto light : SceneManager::lights){
         Vector3f lightDir=light->origin - p;
         if (lightDir.dotProduct(norm)>0){
-            float dist2= lightDir.norm(); //TODO
+            float dist2= lightDir.norm();
             lightDir= normalize(lightDir);
             bool shadow = 1 - sphereTraceShadow(Ray(p,lightDir), sqrtf(dist2));
             diffuse= diffuse+ (float)shadow * interObject->mat.albedo * light->intensity * std::max(0.f,norm.dotProduct(1.0f*lightDir));
@@ -178,6 +181,26 @@ Vector3f shade(const Ray &ray, const float &t, Object * interObject,const unsign
                                                         indirectLightningCol.z * interObject->mat.albedo.z) *
                                          1.f);// 0.18f);// /(float)2;
     }
+
+    float KR;
+    float ior = interObject->mat.matRefraction;
+    //std::cout<<ior<<'\n';
+    fresnel(ray.direction,norm,ior,KR);
+
+    bool outside = ray.direction.dotProduct(norm)<0;
+    Vector3f bias = 0.01f * norm;
+    if (KR < 1) {
+        Vector3f refracDir =refract(ray.direction, norm,ior).normalize();
+        Vector3f refracRayOrig = outside ? p - bias : p + bias;
+        Vector3f tBuff;
+        refraction = sphereTrace(Ray(refracRayOrig,refracDir),depth+1,tBuff);
+    }
+    hitCol = hitCol * KR + refraction* (1-KR);
+    if(ior>1.2f){
+        //std::cout<<KR<<'\n';
+        //hitCol=Vector3f();
+    }
+    //hitCol = Vector3f (10,10,10) + refraction;
     //hitCol=indirectLightningCol * 1.f;
     //hitCol = ((hitCol / (float)1)+2.f * indirectLightningCol* 0.18f);
     //hitCol = (hitCol + indirectLightningCol) * interObject->mat.albedo;
@@ -232,4 +255,41 @@ void createCoordinateSystem(const Vector3f &N, Vector3f &Nt, Vector3f &Nb) {
     else
         Nt = Vector3f(0, -N.z, N.y) / sqrtf(N.y * N.y + N.z * N.z);
     Nb = N.crossProduct(Nt);
+}
+
+Vector3f refract(const Vector3f &I, const Vector3f &N, const float & ior) {
+    float cosi = clamp(-1.0,1.0,I.dotProduct(N));
+    float etai=1,etat=ior;
+    Vector3f n = N;
+    if(cosi < 0) {
+        cosi = -cosi;
+    } else{
+        std::swap(etai,etat);
+        n=-1.f*N;
+    }
+    float et= etai/etat;
+    float k = 1 - (et * et * (1- cosi * cosi));
+    return k<0 ? Vector3f() : et * I + (et* cosi - std::sqrt(k))*n;
+}
+
+void fresnel(const Vector3f &I, const Vector3f &N, const float &ior, float &kr)
+{
+    float cosi = clamp(-1, 1, I.dotProduct(N));
+    float etai = 1, etat = ior;
+    if (cosi > 0) { std::swap(etai, etat); }
+    // Compute sini using Snell's law
+    float sint = etai / etat * sqrtf(std::max(0.f, 1 - cosi * cosi));
+    // Total internal reflection
+    if (sint >= 1) {
+        kr = 1;
+    }
+    else {
+        float cost = sqrtf(std::max(0.f, 1 - sint * sint));
+        cosi = fabsf(cosi);
+        float Rs = ((etat * cosi) - (etai * cost)) / ((etat * cosi) + (etai * cost));
+        float Rp = ((etai * cosi) - (etat * cost)) / ((etai * cosi) + (etat * cost));
+        kr = (Rs * Rs + Rp * Rp) / 2;
+    }
+    // As a consequence of the conservation of energy, transmittance is given by:
+    // kt = 1 - kr;
 }

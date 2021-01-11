@@ -56,18 +56,16 @@ void testlaunchWindow(int argc, char *argv[]){
 
 
 int main(int argc, char *argv[]) {
-
-    //std::chrono::steady_clock sc;
     auto start = std::chrono::steady_clock::now();
 
     Renderer * ren;
     SceneManager sc;
     std::thread win(&testlaunchWindow,argc,argv);
 
-    std::this_thread::sleep_for(std::chrono::milliseconds((int) 700));
+    std::this_thread::sleep_for(std::chrono::milliseconds((int) 1000));
 
     Camera::fov=53;
-    ren = new Renderer(2048,2048, Vector3f(10), Renderer::MULTI,Renderer::SPHERETRACING);
+    ren = new Renderer(1024,1024, Vector3f(10), Renderer::MULTI,Renderer::SPHERETRACING);
     float spawnSpread = 12;
     int numSpheres = 0;
     gen.seed(time(NULL));
@@ -87,8 +85,9 @@ int main(int argc, char *argv[]) {
     orig->position=Vector3f(0,0,0);
     orig->mat= Material(Albedo(0.1,0.1,0.8),0.4,0.02);
     orig->mat.matReflection=1.0f;
+    orig->mat.matRefraction=1.2f;
     auto * sphOrig= new Sphere(Vector3f(0,0,0),4.6f,Material(Albedo(0.6)));
-    auto * midSph = new Sphere(Vector3f(0,0,0),1.f,Material(Albedo(1.f,0.f,1.f)));
+    auto * midSph = new Sphere(Vector3f(0,0,0),1.5f,Material(Albedo(1.f,0.f,1.f),0.8,0.08,1.f,4,1.5f));
     auto * cornerCube = new Cube(Vector3f(2.5,2.5,2.5));
     cornerCube->position=Vector3f(-3.f,3.f,3.f);
     cornerCube->rotation=Vector3f(0,45,45);
@@ -96,7 +95,7 @@ int main(int argc, char *argv[]) {
     auto * outSph= new Sphere(Vector3f(),5.f,Material());
     auto * gud= new ComplexObjectIntersect(outSph,cpl);
     auto * final= new ComplexObjectSubstract(gud,cornerCube);
-    final->mat= Material(Albedo(0.9,0.3,0.6),0.4,0.02,0.6f);
+    final->mat= Material(Albedo(0.9,0.3,0.6),0.4,0.02,0.6f,4,1.2);
 
 
     SceneManager::addObject(final);
@@ -107,8 +106,8 @@ int main(int argc, char *argv[]) {
 
     auto * testLight = new PointLight(Vector3f (-15,45,15.6)*0.5f,Vector3f(15, 10, 10),300);
     auto * testLight2 = new PointLight(Vector3f (5,10,-5),Vector3f(1, 10, 15),400);
-    //SceneManager::addLight(testLight);
-    SceneManager::addLight(testLight2);
+    SceneManager::addLight(testLight);
+    //SceneManager::addLight(testLight2);
 
 
     unsigned int fps = 60;
@@ -120,8 +119,8 @@ int main(int argc, char *argv[]) {
     double rawDelay = 1 / (double)60;
     double delay=0;
     double deltaTime=0;
-    //Vector3f lookAtVec = Vector3f(-20, 10, 10);
-    Vector3f lookAtVec = Vector3f(-10, 9, 10) * 1.0f;
+    Vector3f lookAtVec = Vector3f(-20, 10, 10);
+    //Vector3f lookAtVec = Vector3f(-10, 9, 10) * 1.0f;
     //Vector3f lookAtVec = Vector3f(-15, 40, 0);
 
     for (int i=0;i<frames;i++){
