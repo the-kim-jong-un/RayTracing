@@ -22,12 +22,16 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+///\brief Classe de la fenetre QT
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
+    ///\brief Constructeur de la fenetre
     MainWindow(QWidget *parent = nullptr);
+
+    ///\brief Destructeur de la fenetre
     ~MainWindow();
 
     static QPixmap * QPM;
@@ -39,7 +43,6 @@ private slots :
     void initButtons();
     void initSliders();
     void initComboBox();
-    void initArrowButtons();
 
 
     void sceneChoice();
@@ -58,7 +61,6 @@ private:
     QComboBox * sceneCombo;
     QLineEdit * downloadFileName;
     QPushButton * sphereMarchingButton, * shadingButton, * downloadButton;
-    QPushButton * arrowLeft, * arrowRight, * arrowUp, * arrowDown;
 
     int windowHeight, windowWIdth;
     int desktopHeight, desktopWidth;

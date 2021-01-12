@@ -102,58 +102,6 @@
      <string>PushButton</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="arrowLeft">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>310</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Left</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="arrowRight">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>340</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Right</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="arrowUp">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>370</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Up</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="arrowDown">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>400</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Down</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -9,6 +9,7 @@
 #include "Vector.h"
 #include "Matrix4x4.h"
 
+///\brief Classe de la camera
 class Camera {
 public:
     Position origin;

@@ -8,6 +8,7 @@
 
 #include "Object.h"
 
+///\brief Classe de Sphere
 class Sphere : public Object{
 public:
     float radius;

@@ -8,6 +8,7 @@
 
 #include "Vector.h"
 
+///\brief
 class Matrix4x4 {
 public:
     float x[4][4];
