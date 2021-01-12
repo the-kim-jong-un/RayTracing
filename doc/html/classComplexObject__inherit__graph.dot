@@ -1,0 +1,15 @@
+digraph "ComplexObject"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="ComplexObject",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Super-classe abstraite d'objets complexes."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Object",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classObject.html",tooltip="Super-classe Abstraite d'objets primitif."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ComplexObjectIntersect",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classComplexObjectIntersect.html",tooltip="Classe permettant de creer l'intersection de 2 objets primitifs."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ComplexObjectSubstract",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classComplexObjectSubstract.html",tooltip="Classe permettant de creer la différence de 2 objets primitifs."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ComplexObjectUnion",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classComplexObjectUnion.html",tooltip="Classe permettant de creer l'union de 2 objets primitifs."];
+}

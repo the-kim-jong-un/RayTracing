@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['mainwindow',['MainWindow',['../classMainWindow.html',1,'']]],
-  ['material',['Material',['../classMaterial.html',1,'Material'],['../classMaterial.html#ac5eb84a898daa6a246dea42070131612',1,'Material::Material()']]],
-  ['matrix',['Matrix',['../classMatrix.html',1,'']]],
-  ['matrix4x4',['Matrix4x4',['../classMatrix4x4.html',1,'']]]
+  ['light_9',['Light',['../classLight.html',1,'']]],
+  ['lookat_10',['lookAt',['../classCamera.html#a7a4260d288522e0f6c5d5aae965b62e6',1,'Camera']]]
 ];

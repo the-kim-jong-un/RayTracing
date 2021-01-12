@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['norm',['norm',['../classVector3.html#a69b281ad91fc58e358b34a1dc638cf32',1,'Vector3']]],
-  ['normalize',['normalize',['../classVector3.html#a07e3cb885d092c82d5b56be941625b24',1,'Vector3']]]
+  ['mainwindow_67',['MainWindow',['../classMainWindow.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow']]],
+  ['material_68',['Material',['../classMaterial.html#ac5eb84a898daa6a246dea42070131612',1,'Material']]]
 ];

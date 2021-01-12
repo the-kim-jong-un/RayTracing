@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['object',['Object',['../classObject.html#a40860402e64d8008fb42329df7097cdb',1,'Object']]],
-  ['operator_3d',['operator=',['../classVector3.html#ad8345d66b4808bf7b5a489628f8a90d1',1,'Vector3']]]
+  ['norm_69',['norm',['../classVector3.html#a69b281ad91fc58e358b34a1dc638cf32',1,'Vector3']]],
+  ['normalize_70',['normalize',['../classVector3.html#a07e3cb885d092c82d5b56be941625b24',1,'Vector3']]]
 ];

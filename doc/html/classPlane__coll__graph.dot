@@ -1,0 +1,15 @@
+digraph "Plane"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Plane",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Object",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classObject.html",tooltip="Super-classe Abstraite d'objets primitif."];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" mat" ,fontname="Helvetica"];
+  Node3 [label="Material",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classMaterial.html",tooltip="Classe des types de lumiere."];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" albedo" ,fontname="Helvetica"];
+  Node4 [label="Vector3\< float \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classVector3.html",tooltip=" "];
+  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" rotation\nposition\ncolor" ,fontname="Helvetica"];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" n\npointOnPlane" ,fontname="Helvetica"];
+}
