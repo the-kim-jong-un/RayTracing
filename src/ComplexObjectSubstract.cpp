@@ -10,8 +10,6 @@ ComplexObjectSubstract::ComplexObjectSubstract(Object *_o1, Object *_o2) : Compl
 
 }
 
-
-
 float ComplexObjectSubstract::getDistance(const Vector3f &from) const {
     return std::max(o1->getDistance(from),-o2->getDistance(from));
 }
@@ -25,5 +23,9 @@ bool ComplexObjectSubstract::intersect(const Ray &ray, float &t) {
 }
 
 void ComplexObjectSubstract::print() const {
+
+}
+
+ComplexObjectSubstract::~ComplexObjectSubstract() {
 
 }

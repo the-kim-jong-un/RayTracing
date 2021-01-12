@@ -161,7 +161,7 @@ Vector3f shade(const Ray &ray, const float &t, Object * interObject,const unsign
         Vector3f Nt,Nb;
         createCoordinateSystem(norm,Nt,Nb);
         float pdf = 1 / (1 * M_PI);
-        for (int n = 0; n < Renderer::sampleAcuracy; ++n) {
+        for (int n = 0; n < Renderer::sampleAccuracy; ++n) {
             float r1 = distribution(generator);
             float r2 = distribution(generator);
             Vector3f sample = uniformSampleHemisphere(r1, r2);
@@ -174,8 +174,8 @@ Vector3f shade(const Ray &ray, const float &t, Object * interObject,const unsign
             indirectLightningCol = indirectLightningCol + (r1 * sphereTrace(Ray(p+sampleWorld*0.001f,sampleWorld),depth + 1,tbuff)/pdf);
         }
     }
-    indirectLightningCol = indirectLightningCol /(float)Renderer::sampleAcuracy;
-    if (Renderer::sampleAcuracy>0) {
+    indirectLightningCol = indirectLightningCol /(float)Renderer::sampleAccuracy;
+    if (Renderer::sampleAccuracy > 0) {
         hitCol = ((hitCol / (float) 1) + 1.f * Vector3f(indirectLightningCol.x * interObject->mat.albedo.x,
                                                         indirectLightningCol.y * interObject->mat.albedo.y,
                                                         indirectLightningCol.z * interObject->mat.albedo.z) *

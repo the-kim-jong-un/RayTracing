@@ -18,6 +18,7 @@ Renderer::Renderer(const int &width, const int &height,const Vector3f & BG, cons
     backgroundColor=BG;
     renderMode = r;
     traceMode=t;
+    self = this;
 }
 
 void Renderer::renderMono() {
@@ -67,8 +68,6 @@ void Renderer::renderThread() {
 
     running=true;
     std::thread tSave(&Renderer::permSave,this,frameBuffer);
-    //tSave.detach();
-
     std::thread tPool[maxThread];
     for (int j = 0; j < maxThread; ++j) {
         tPool[j]=std::thread(&Renderer::threadRayCast,this,
@@ -149,6 +148,7 @@ void Renderer::saveToFile(const Vector3f *frameBuffer,const int &offset) {
 }
 
 void Renderer::render() {
+    std::cout<<"Started Rendering "<< renderMode<< "..."<<'\n';
     switch (renderMode) {
         case MONO:
             renderMono();

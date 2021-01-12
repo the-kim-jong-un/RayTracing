@@ -14,6 +14,8 @@
 class Renderer {
 public:
 
+    static Renderer * self;
+
     enum RenderMode{
         MONO,
         MULTI
@@ -28,7 +30,7 @@ public:
     const unsigned int maxThread = 32;
     static float far;
     static float near;
-    static const unsigned int sampleAcuracy = 0;
+    static unsigned int sampleAccuracy;
     static const unsigned int maxSampleDepth = 1;
     static const unsigned int maxDepth = 4;
     static RenderMode renderMode;
