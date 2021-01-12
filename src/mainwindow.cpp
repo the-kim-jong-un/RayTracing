@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->setupUi(this);
     setWindowTitle("Ray Tracing");
     initWindow();
-    initArrowButtons();
     displayImage();
 }
 
@@ -74,23 +73,6 @@ void MainWindow::displayImage(){
     ui->displayLabel->setPixmap(QPixmap::fromImage(image));
     ui->displayLabel->setGeometry(windowWIdth*0.28,windowHeight*0.08, windowHeight*0.8,windowHeight*0.8);
     ui->displayLabel->setScaledContents(true);
-}
-
-void MainWindow::initArrowButtons(){
-    ui->arrowLeft->setIcon(style()->standardIcon(QStyle::SP_ArrowLeft));
-    ui->arrowRight->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
-    ui->arrowDown->setIcon(style()->standardIcon(QStyle::SP_ArrowDown));
-    ui->arrowUp->setIcon(style()->standardIcon(QStyle::SP_ArrowUp));
-
-    ui->arrowLeft->setGeometry(QRect(QPoint(windowWIdth/2-155, windowHeight*0.92), QSize(100,25)));
-    ui->arrowRight->setGeometry(QRect(QPoint(windowWIdth/2+55, windowHeight*0.92), QSize(100,25)));
-    ui->arrowUp->setGeometry(QRect(QPoint(windowWIdth/2-50, windowHeight*0.90), QSize(100,25)));
-    ui->arrowDown->setGeometry(QRect(QPoint(windowWIdth/2-50, windowHeight*0.94), QSize(100,25)));
-
-    ui->arrowLeft->setPalette(QColor(170,170,170));
-    ui->arrowRight->setPalette(QColor(170,170,170));
-    ui->arrowUp->setPalette(QColor(160,160,160));
-    ui->arrowDown->setPalette(QColor(160,160,160));
 }
 
 void MainWindow::sliderValue(){
