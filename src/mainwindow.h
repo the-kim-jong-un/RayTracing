@@ -43,7 +43,6 @@ private slots :
     void initButtons();
     void initSliders();
     void initComboBox();
-    void initArrowButtons();
 
     void sceneChoice();
     void sliderValue();
