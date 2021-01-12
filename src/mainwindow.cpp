@@ -1,9 +1,11 @@
 //
 // Created by adrien on 18/09/2020.
 //
-
+#include <thread>
+#include <cmath>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "SceneManager.h"
 #include "iostream"
 #include "Renderer.h"
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
@@ -12,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     initWindow();
     initArrowButtons();
     displayImage();
+    qDebug()<< "Preselected scene : " << ui->sceneCombo->currentIndex();
+    std::thread SC(&SceneManager::loadPremadeScene,0);
+    SC.detach();
 }
 
 void MainWindow::initWindow(){
@@ -36,7 +41,7 @@ void MainWindow::initSliders(){
     ui->sliderLabel->setScaledContents(true);
     ui->speedSlider->setPalette(QColor(100,100,100));
     ui->speedSlider->setGeometry(QRect(QPoint(windowWIdth/40+110, windowHeight/40), QSize(100,25)));
-    ui->speedSlider->setRange(0, 100);
+    ui->speedSlider->setRange(0, 14);
     connect(ui->speedSlider, SIGNAL(sliderReleased()), SLOT(sliderValue()));
 }
 
@@ -48,10 +53,11 @@ void MainWindow::initButtons(){
     connect(ui->shadingButton, SIGNAL(clicked()), SLOT(shading()));
 
     //sphere marching button
-    ui->sphereMarchingButton->setText("S Marching");
+    ui->sphereMarchingButton->setText("Render");
     ui->sphereMarchingButton->setPalette(QColor(100,100,100));
     ui->sphereMarchingButton->setGeometry(QRect(QPoint(windowWIdth/40+330, windowHeight/40), QSize(100,25)));
-    connect(ui->sphereMarchingButton, SIGNAL(clicked()), SLOT(sphereMarching()));
+    //connect(ui->sphereMarchingButton, SIGNAL(clicked()), SLOT(sphereMarching()));
+    connect(ui->sphereMarchingButton, SIGNAL(clicked()), SLOT(renderImage()));
 
     //download button
     ui->downloadButton->setText("Download");
@@ -70,7 +76,7 @@ void MainWindow::initComboBox(){
 }
 
 void MainWindow::displayImage(){
-    QImage image("../data/render0_0.ppm");
+    QImage image("../data/render0_1.ppm");
     ui->displayLabel->setPixmap(QPixmap::fromImage(image));
     ui->displayLabel->setGeometry(windowWIdth*0.28,windowHeight*0.08, windowHeight*0.8,windowHeight*0.8);
     ui->displayLabel->setScaledContents(true);
@@ -94,17 +100,30 @@ void MainWindow::initArrowButtons(){
 }
 
 void MainWindow::sliderValue(){
-    qDebug() << ui->speedSlider->value();
+    qDebug() << std::pow(2,ui->speedSlider->value());
 }
 void MainWindow::shading(){
 }
-void MainWindow::sphereMarching(){
+void MainWindow::renderImage() {
+
+    if(ui->speedSlider->value() > 0){
+        Renderer::sampleAcuracy = std::pow(2,ui->speedSlider->value());
+    }
+    else{
+        Renderer::sampleAcuracy= 0;
+    }
+    qDebug()<<"render from button with accuracy : "<<Renderer::sampleAcuracy;
+    std::thread ren(&Renderer::render,Renderer::self);
+    ren.detach();
 }
 void MainWindow::sceneChoice(){
+    int id = ui->sceneCombo->currentIndex();
+    qDebug() << "Selected scene : "<< id;
+    std::thread SC(&SceneManager::loadPremadeScene,id);
+    SC.detach();
 }
 void MainWindow::downloadImage(){
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "/home/adrien/Pictures/Wallpapers/untitled.jpg", tr("Images (*.png *.jpg)"));
-    //image.save(name);
 }
 
 MainWindow::~MainWindow(){
@@ -136,4 +155,6 @@ void MainWindow::updateImage(const Vector3f * pix) {
     ui->displayLabel->setPixmap(QPixmap::fromImage(*img));
     delete img;
 }
+
+
 

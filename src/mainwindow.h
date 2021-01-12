@@ -41,12 +41,13 @@ private slots :
     void initComboBox();
     void initArrowButtons();
 
+
     void sceneChoice();
     void sliderValue();
 
 
     void shading();
-    void sphereMarching();
+    void renderImage();
     void downloadImage();
 
 

@@ -12,13 +12,17 @@
 #include "Light.h"
 class SceneManager {
 public:
+    static SceneManager * self;
+
     static std::vector<Object*> objects;
     static std::vector<PointLight*> lights;
 
     SceneManager();
+
     static void addObject(Object * ob);
     static void addLight(PointLight *ob);
     static void clear();
+    static void loadPremadeScene(const unsigned int &sceneN );
 };
 
 
