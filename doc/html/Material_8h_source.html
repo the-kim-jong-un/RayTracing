@@ -81,19 +81,20 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classMaterial.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMaterial.html">Material</a> {</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classMaterial.html#ac5eb84a898daa6a246dea42070131612">Material</a>(<span class="keyword">const</span> <a class="code" href="classVector3.html">Vector3f</a> &amp; al= <a class="code" href="classVector3.html">Vector3f</a>(0.18,0.18,0.18) ,<span class="keyword">const</span> <span class="keywordtype">float</span> &amp; mDif=0.8, <span class="keyword">const</span> <span class="keywordtype">float</span> &amp; mSpec=0.08, <span class="keyword">const</span> <span class="keywordtype">float</span> &amp;mRef=1.f, <span class="keyword">const</span> <span class="keywordtype">float</span> &amp; n=4);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classMaterial.html#aec993d57c8d6824b63c975eda2986b3a">Material</a>(<span class="keyword">const</span> <a class="code" href="classVector3.html">Vector3f</a> &amp; al= <a class="code" href="classVector3.html">Vector3f</a>(0.18,0.18,0.18) ,<span class="keyword">const</span> <span class="keywordtype">float</span> &amp; mDif=0.8, <span class="keyword">const</span> <span class="keywordtype">float</span> &amp; mSpec=0.08, <span class="keyword">const</span> <span class="keywordtype">float</span> &amp;mRef=1.f, <span class="keyword">const</span> <span class="keywordtype">float</span> &amp; n=4, <span class="keyword">const</span> <span class="keywordtype">float</span> &amp;mRefrac =0.f);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classVector3.html">Vector3f</a> albedo;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">float</span> matDiffuse;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">float</span> matReflection;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">float</span> matSpecular, n;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">float</span> matRefraction;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">float</span> matSpecular, n;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif //RAYTRACING_MATERIAL_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif //RAYTRACING_MATERIAL_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassMaterial_html"><div class="ttname"><a href="classMaterial.html">Material</a></div><div class="ttdoc">Classe des types de lumiere.</div><div class="ttdef"><b>Definition:</b> Material.h:12</div></div>
 <div class="ttc" id="aclassVector3_html"><div class="ttname"><a href="classVector3.html">Vector3&lt; float &gt;</a></div></div>
-<div class="ttc" id="aclassMaterial_html_ac5eb84a898daa6a246dea42070131612"><div class="ttname"><a href="classMaterial.html#ac5eb84a898daa6a246dea42070131612">Material::Material</a></div><div class="ttdeci">Material(const Vector3f &amp;al=Vector3f(0.18, 0.18, 0.18), const float &amp;mDif=0.8, const float &amp;mSpec=0.08, const float &amp;mRef=1.f, const float &amp;n=4)</div><div class="ttdoc">Gère les types de lumières (speculaire/réflexive/diffuse)</div><div class="ttdef"><b>Definition:</b> Material.cpp:7</div></div>
+<div class="ttc" id="aclassMaterial_html_aec993d57c8d6824b63c975eda2986b3a"><div class="ttname"><a href="classMaterial.html#aec993d57c8d6824b63c975eda2986b3a">Material::Material</a></div><div class="ttdeci">Material(const Vector3f &amp;al=Vector3f(0.18, 0.18, 0.18), const float &amp;mDif=0.8, const float &amp;mSpec=0.08, const float &amp;mRef=1.f, const float &amp;n=4, const float &amp;mRefrac=0.f)</div><div class="ttdoc">Gère les types de lumières (speculaire/réflexive/diffuse)</div><div class="ttdef"><b>Definition:</b> Material.cpp:7</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

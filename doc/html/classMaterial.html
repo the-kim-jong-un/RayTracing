@@ -85,9 +85,9 @@ Collaboration diagram for Material:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac5eb84a898daa6a246dea42070131612"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#ac5eb84a898daa6a246dea42070131612">Material</a> (const <a class="el" href="classVector3.html">Vector3f</a> &amp;al=<a class="el" href="classVector3.html">Vector3f</a>(0.18, 0.18, 0.18), const float &amp;mDif=0.8, const float &amp;mSpec=0.08, const float &amp;mRef=1.f, const float &amp;n=4)</td></tr>
-<tr class="memdesc:ac5eb84a898daa6a246dea42070131612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gère les types de lumières (speculaire/réflexive/diffuse)  <a href="classMaterial.html#ac5eb84a898daa6a246dea42070131612">More...</a><br /></td></tr>
-<tr class="separator:ac5eb84a898daa6a246dea42070131612"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec993d57c8d6824b63c975eda2986b3a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMaterial.html#aec993d57c8d6824b63c975eda2986b3a">Material</a> (const <a class="el" href="classVector3.html">Vector3f</a> &amp;al=<a class="el" href="classVector3.html">Vector3f</a>(0.18, 0.18, 0.18), const float &amp;mDif=0.8, const float &amp;mSpec=0.08, const float &amp;mRef=1.f, const float &amp;n=4, const float &amp;mRefrac=0.f)</td></tr>
+<tr class="memdesc:aec993d57c8d6824b63c975eda2986b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gère les types de lumières (speculaire/réflexive/diffuse)  <a href="classMaterial.html#aec993d57c8d6824b63c975eda2986b3a">More...</a><br /></td></tr>
+<tr class="separator:aec993d57c8d6824b63c975eda2986b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -100,6 +100,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>matDiffuse</b></td><
 <tr class="memitem:a25e84a0047a32fd4230a6b25dce11fc0"><td class="memItemLeft" align="right" valign="top"><a id="a25e84a0047a32fd4230a6b25dce11fc0"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>matReflection</b></td></tr>
 <tr class="separator:a25e84a0047a32fd4230a6b25dce11fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1bc85628b028ea2936383ad1cc99e36"><td class="memItemLeft" align="right" valign="top"><a id="aa1bc85628b028ea2936383ad1cc99e36"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>matRefraction</b></td></tr>
+<tr class="separator:aa1bc85628b028ea2936383ad1cc99e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7dfd2e7a2e7fdb1dd9bb25081d9de44"><td class="memItemLeft" align="right" valign="top"><a id="ae7dfd2e7a2e7fdb1dd9bb25081d9de44"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>matSpecular</b></td></tr>
 <tr class="separator:ae7dfd2e7a2e7fdb1dd9bb25081d9de44"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,8 +113,8 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>n</b></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Classe des types de lumiere. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac5eb84a898daa6a246dea42070131612"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5eb84a898daa6a246dea42070131612">&#9670;&nbsp;</a></span>Material()</h2>
+<a id="aec993d57c8d6824b63c975eda2986b3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec993d57c8d6824b63c975eda2986b3a">&#9670;&nbsp;</a></span>Material()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -144,7 +147,13 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>n</b></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const float &amp;&#160;</td>
-          <td class="paramname"><em>n</em> = <code>4</code>&#160;</td>
+          <td class="paramname"><em>n</em> = <code>4</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float &amp;&#160;</td>
+          <td class="paramname"><em>mRefrac</em> = <code>0.f</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
