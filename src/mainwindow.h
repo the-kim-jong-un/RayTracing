@@ -61,7 +61,6 @@ private:
     QComboBox * sceneCombo;
     QLineEdit * downloadFileName;
     QPushButton * sphereMarchingButton, * shadingButton, * downloadButton;
-    QPushButton * arrowLeft, * arrowRight, * arrowUp, * arrowDown;
 
     int windowHeight, windowWIdth;
     int desktopHeight, desktopWidth;
