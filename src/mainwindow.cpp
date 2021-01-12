@@ -89,12 +89,12 @@ void MainWindow::shading(){
 void MainWindow::renderImage() {
 
     if(ui->speedSlider->value() > 0){
-        Renderer::sampleAcuracy = std::pow(2,ui->speedSlider->value());
+        Renderer::sampleAccuracy = std::pow(2, ui->speedSlider->value());
     }
     else{
-        Renderer::sampleAcuracy= 0;
+        Renderer::sampleAccuracy= 0;
     }
-    qDebug()<<"render from button with accuracy : "<<Renderer::sampleAcuracy;
+    qDebug()<<"render from button with accuracy : "<<Renderer::sampleAccuracy;
     std::thread ren(&Renderer::render,Renderer::self);
     ren.detach();
 }

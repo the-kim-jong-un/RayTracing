@@ -35,7 +35,7 @@ float Camera::fov;
 
 SceneManager * SceneManager::self;
 Renderer * Renderer::self;
-unsigned int Renderer::sampleAcuracy=0;
+unsigned int Renderer::sampleAccuracy=0;
 Renderer::RenderMode Renderer::renderMode;
 Renderer::TraceMode Renderer::traceMode;
 Vector3f Renderer::backgroundColor;

@@ -30,7 +30,7 @@ public:
     const unsigned int maxThread = 32;
     static float far;
     static float near;
-    static unsigned int sampleAcuracy;
+    static unsigned int sampleAccuracy;
     static const unsigned int maxSampleDepth = 1;
     static const unsigned int maxDepth = 4;
     static RenderMode renderMode;
