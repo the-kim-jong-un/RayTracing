@@ -75,7 +75,7 @@ private:
 };
 
 /// @brief Convertion degrés vers rad
-/// @param deg valeur a convertir en degrés
+/// @param deg valeur a convertir en radian
 float deg2rad(const float &deg);
 
 
