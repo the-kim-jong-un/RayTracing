@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['norm_15',['norm',['../classVector3.html#a69b281ad91fc58e358b34a1dc638cf32',1,'Vector3']]],
-  ['normalize_16',['normalize',['../classVector3.html#a07e3cb885d092c82d5b56be941625b24',1,'Vector3']]]
+  ['light_13',['Light',['../classLight.html',1,'']]],
+  ['loadpremadescene_14',['loadPremadeScene',['../classSceneManager.html#a51216f6c986f33193cd1a5ed86d9bf5f',1,'SceneManager']]],
+  ['lookat_15',['lookAt',['../classCamera.html#a7a4260d288522e0f6c5d5aae965b62e6',1,'Camera']]]
 ];

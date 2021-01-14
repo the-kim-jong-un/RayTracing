@@ -59,7 +59,7 @@ private slots :
 
     ///\brief choix de la scene 
     void sceneChoice();
-    ///\brief recuperere la valeu du slider du niveau de detail
+    ///\brief recupere la valeu du slider du niveau de detail
     void sliderValue();
 
 

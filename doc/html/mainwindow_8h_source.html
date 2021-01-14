@@ -103,41 +103,51 @@ $(function() {
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7">~MainWindow</a>();</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">static</span> QPixmap * QPM;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> updateImage(<span class="keyword">const</span> <a class="code" href="classVector3.html">Vector3f</a> * pix);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> displayImage();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">private</span> slots :</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> initWindow();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> initButtons();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> initSliders();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> initComboBox();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> sceneChoice();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> sliderValue();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> shading();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> renderImage();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> downloadImage();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    Ui::MainWindow * ui;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    QSlider * speedSlider;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    QLabel * displayLabel, * sliderLabel, * downloadLabel;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    QComboBox * sceneCombo;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    QLineEdit * downloadFileName;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    QPushButton * sphereMarchingButton, * shadingButton, * downloadButton;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMainWindow.html#ae178d256c589305bdd15e2d1fe601048">updateImage</a>(<span class="keyword">const</span> <a class="code" href="classVector3.html">Vector3f</a> * pix);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMainWindow.html#a9d097bf5eb95de0d0afcc5b84df69c56">displayImage</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">enum</span> ShowedMap{</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        RENDER,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        DEPTH_MAP,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        GI_MAP</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    };</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    ShowedMap currentlyShown;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">private</span> slots :</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> initWindow();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> initButtons();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> initSliders();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> initComboBox();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> sceneChoice();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> sliderValue();</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">int</span> windowHeight, windowWIdth;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">int</span> desktopHeight, desktopWidth;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif // MAINWINDOW_H</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> shading();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> renderImage();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> downloadImage();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    Ui::MainWindow * ui;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    QSlider * speedSlider;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    QLabel * displayLabel, * sliderLabel, * downloadLabel;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    QComboBox * sceneCombo;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    QLineEdit * downloadFileName;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    QPushButton * sphereMarchingButton, * shadingButton, * downloadButton;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">int</span> windowHeight, windowWIdth;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">int</span> desktopHeight, desktopWidth;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif // MAINWINDOW_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassMainWindow_html_ae98d00a93bc118200eeef9f9bba1dba7"><div class="ttname"><a href="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow::~MainWindow</a></div><div class="ttdeci">~MainWindow()</div><div class="ttdoc">Destructeur de la fenetre.</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:111</div></div>
+<div class="ttc" id="aclassMainWindow_html_ae98d00a93bc118200eeef9f9bba1dba7"><div class="ttname"><a href="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow::~MainWindow</a></div><div class="ttdeci">~MainWindow()</div><div class="ttdoc">Destructeur de la fenetre.</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:124</div></div>
+<div class="ttc" id="aclassMainWindow_html_ae178d256c589305bdd15e2d1fe601048"><div class="ttname"><a href="classMainWindow.html#ae178d256c589305bdd15e2d1fe601048">MainWindow::updateImage</a></div><div class="ttdeci">void updateImage(const Vector3f *pix)</div><div class="ttdoc">mise a jour de l'image en temps reel</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:128</div></div>
+<div class="ttc" id="aclassMainWindow_html_a9d097bf5eb95de0d0afcc5b84df69c56"><div class="ttname"><a href="classMainWindow.html#a9d097bf5eb95de0d0afcc5b84df69c56">MainWindow::displayImage</a></div><div class="ttdeci">void displayImage()</div><div class="ttdoc">affichage de la scene</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:78</div></div>
 <div class="ttc" id="aclassMainWindow_html"><div class="ttname"><a href="classMainWindow.html">MainWindow</a></div><div class="ttdoc">Classe de la fenetre QT.</div><div class="ttdef"><b>Definition:</b> mainwindow.h:26</div></div>
 <div class="ttc" id="aclassMainWindow_html_a996c5a2b6f77944776856f08ec30858d"><div class="ttname"><a href="classMainWindow.html#a996c5a2b6f77944776856f08ec30858d">MainWindow::MainWindow</a></div><div class="ttdeci">MainWindow(QWidget *parent=nullptr)</div><div class="ttdoc">Constructeur de la fenetre.</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:11</div></div>
 <div class="ttc" id="aclassVector3_html"><div class="ttname"><a href="classVector3.html">Vector3&lt; float &gt;</a></div></div>

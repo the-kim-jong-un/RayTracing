@@ -78,19 +78,11 @@ $(function() {
 Inheritance diagram for Sphere:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSphere__inherit__graph.png" border="0" usemap="#Sphere_inherit__map" alt="Inheritance graph"/></div>
-<map name="Sphere_inherit__map" id="Sphere_inherit__map">
-<area shape="rect" href="classObject.html" title="Object" alt="" coords="7,5,67,32"/>
-</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for Sphere:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSphere__coll__graph.png" border="0" usemap="#Sphere_coll__map" alt="Collaboration graph"/></div>
-<map name="Sphere_coll__map" id="Sphere_coll__map">
-<area shape="rect" href="classObject.html" title="Object" alt="" coords="49,187,109,213"/>
-<area shape="rect" href="classMaterial.html" title="Material" alt="" coords="116,96,184,123"/>
-<area shape="rect" href="classVector3.html" title="Vector3\&lt; float \&gt;" alt="" coords="5,5,121,32"/>
-</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -110,9 +102,8 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSphere.html#ac2ef169c947208eeb095d49e6516403b">print</a> () const override</td></tr>
 <tr class="memdesc:ac2ef169c947208eeb095d49e6516403b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche le rayon de la <a class="el" href="classSphere.html" title="Classe de Sphere.">Sphere</a>. <br /></td></tr>
 <tr class="separator:ac2ef169c947208eeb095d49e6516403b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9065f554b2e49d566993faf95521861"><td class="memItemLeft" align="right" valign="top"><a id="af9065f554b2e49d566993faf95521861"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSphere.html#af9065f554b2e49d566993faf95521861">getDistance</a> (const <a class="el" href="classVector3.html">Vector3f</a> &amp;from) const override</td></tr>
-<tr class="memdesc:af9065f554b2e49d566993faf95521861"><td class="mdescLeft">&#160;</td><td class="mdescRight">retourne la distance d'écart entre la surface de la sphere et l'origine de la lumiere <br /></td></tr>
+<tr class="memitem:af9065f554b2e49d566993faf95521861"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSphere.html#af9065f554b2e49d566993faf95521861">getDistance</a> (const <a class="el" href="classVector3.html">Vector3f</a> &amp;from) const override</td></tr>
+<tr class="memdesc:af9065f554b2e49d566993faf95521861"><td class="mdescLeft">&#160;</td><td class="mdescRight">retourne la distance d'écart entre la surface de la sphere et le point donné  <a href="classSphere.html#af9065f554b2e49d566993faf95521861">More...</a><br /></td></tr>
 <tr class="separator:af9065f554b2e49d566993faf95521861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae42e95b890608ade68c278727c091333"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSphere.html#ae42e95b890608ade68c278727c091333">intersect</a> (const <a class="el" href="classRay.html">Ray</a> &amp;ray, float &amp;t) override</td></tr>
 <tr class="memdesc:ae42e95b890608ade68c278727c091333"><td class="mdescLeft">&#160;</td><td class="mdescRight">test d'intersection  <a href="classSphere.html#ae42e95b890608ade68c278727c091333">More...</a><br /></td></tr>
@@ -200,6 +191,42 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>radius</b></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="af9065f554b2e49d566993faf95521861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9065f554b2e49d566993faf95521861">&#9670;&nbsp;</a></span>getDistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Sphere::getDistance </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVector3.html">Vector3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>from</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>retourne la distance d'écart entre la surface de la sphere et le point donné </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>Point donné pour le calcul de distance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classObject.html#acdd050b830ca30450950ee12304ff050">Object</a>.</p>
+
+</div>
+</div>
 <a id="abdd3ea13bed67575aed6982f717ae35a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abdd3ea13bed67575aed6982f717ae35a">&#9670;&nbsp;</a></span>getSurfaceData()</h2>
 

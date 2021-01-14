@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['savetofile_77',['saveToFile',['../classRenderer.html#ab007ac7945b205cdb93c0eed45753a82',1,'Renderer']]],
-  ['sphere_78',['Sphere',['../classSphere.html#a890a63ff583cb88e7ec4e840b4ef5eb9',1,'Sphere::Sphere()'],['../classSphere.html#ad2eae498aef8d5e6838a7a651a898d03',1,'Sphere::Sphere(const Vector3f &amp;pos, const float &amp;radius, const Material &amp;material)']]]
+  ['permsave_88',['permSave',['../classRenderer.html#a539c18143655f550137a4dcf31aa0f5c',1,'Renderer']]],
+  ['pointlight_89',['PointLight',['../classPointLight.html#a9a80fe403707258c2d6b2ee22147a7ce',1,'PointLight']]],
+  ['print_90',['print',['../classComplexObject.html#a9537856884a1edf8f3a0bbacc3e63030',1,'ComplexObject::print()'],['../classComplexObjectIntersect.html#a109e221a3e757b05d706278fcf219498',1,'ComplexObjectIntersect::print()'],['../classComplexObjectSubstract.html#ad038b857a9c5cddaf0c7a5005ceed352',1,'ComplexObjectSubstract::print()'],['../classComplexObjectUnion.html#ab595957a813b7468cb05af89bbddf240',1,'ComplexObjectUnion::print()'],['../classCube.html#a98a86f5fab792d5e38c0b88e0c7fa87e',1,'Cube::print()'],['../classObject.html#ac93660f16ee1cb7839150906d33b38fd',1,'Object::print()'],['../classPlane.html#a3eaf026bf17567e09c6a51e1b8d5dc0e',1,'Plane::print()'],['../classSphere.html#ac2ef169c947208eeb095d49e6516403b',1,'Sphere::print()']]]
 ];
