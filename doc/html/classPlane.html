@@ -69,6 +69,11 @@ $(function() {
 <div class="title">Plane Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>classe des murs et du sol  
+ <a href="classPlane.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Plane_8h_source.html">Plane.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Plane:</div>
 <div class="dyncontent">
@@ -82,9 +87,13 @@ Collaboration diagram for Plane:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae19aff38ce98b10062fd3710c20cce06"><td class="memItemLeft" align="right" valign="top"><a id="ae19aff38ce98b10062fd3710c20cce06"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Plane</b> (const <a class="el" href="classVector3.html">Vector3f</a> &amp;nn, const <a class="el" href="classVector3.html">Vector3f</a> &amp;pp)</td></tr>
+<tr class="memitem:ae19aff38ce98b10062fd3710c20cce06"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlane.html#ae19aff38ce98b10062fd3710c20cce06">Plane</a> (const <a class="el" href="classVector3.html">Vector3f</a> &amp;nn, const <a class="el" href="classVector3.html">Vector3f</a> &amp;pp)</td></tr>
+<tr class="memdesc:ae19aff38ce98b10062fd3710c20cce06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de <a class="el" href="classPlane.html" title="classe des murs et du sol">Plane</a>.  <a href="classPlane.html#ae19aff38ce98b10062fd3710c20cce06">More...</a><br /></td></tr>
 <tr class="separator:ae19aff38ce98b10062fd3710c20cce06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69abd86051c880dcb44b249ad10c4436"><td class="memItemLeft" align="right" valign="top"><a id="a69abd86051c880dcb44b249ad10c4436"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlane.html#a69abd86051c880dcb44b249ad10c4436">~Plane</a> ()</td></tr>
+<tr class="memdesc:a69abd86051c880dcb44b249ad10c4436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur. <br /></td></tr>
+<tr class="separator:a69abd86051c880dcb44b249ad10c4436"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94add5726ba1ed0acdfc847a4ade81fc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPlane.html#a94add5726ba1ed0acdfc847a4ade81fc">getDistance</a> (const <a class="el" href="classVector3.html">Vector3f</a> &amp;from) const override</td></tr>
 <tr class="memdesc:a94add5726ba1ed0acdfc847a4ade81fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule l'écart entre le point donné et la surface de l'objet.  <a href="classPlane.html#a94add5726ba1ed0acdfc847a4ade81fc">More...</a><br /></td></tr>
 <tr class="separator:a94add5726ba1ed0acdfc847a4ade81fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,6 +142,46 @@ Public Attributes</h2></td></tr>
 <a class="el" href="classMaterial.html">Material</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mat</b></td></tr>
 <tr class="separator:a13f8afe483fdcbc4ef06405263f5696c inherit pub_attribs_classObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>classe des murs et du sol </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae19aff38ce98b10062fd3710c20cce06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae19aff38ce98b10062fd3710c20cce06">&#9670;&nbsp;</a></span>Plane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Plane::Plane </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVector3.html">Vector3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>nn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVector3.html">Vector3f</a> &amp;&#160;</td>
+          <td class="paramname"><em>pp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructeur de <a class="el" href="classPlane.html" title="classe des murs et du sol">Plane</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nn</td><td>: normale </td></tr>
+    <tr><td class="paramname">pp</td><td>: point du plan </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a94add5726ba1ed0acdfc847a4ade81fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a94add5726ba1ed0acdfc847a4ade81fc">&#9670;&nbsp;</a></span>getDistance()</h2>
@@ -165,13 +214,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>distance entre</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">from</td><td>et la surface de l'objet </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>distance entre from et la surface de l'objet </dd></dl>
 
 <p>Implements <a class="el" href="classObject.html#acdd050b830ca30450950ee12304ff050">Object</a>.</p>
 

@@ -8,7 +8,7 @@
 
 #include "Object.h"
 
-///\brief classe pour les murs et le sol
+///\brief classe des murs et du sol
 class Plane : public Object {
 public:
     Vector3f n;
@@ -18,6 +18,10 @@ public:
     ///\param nn : normale
     ///\param pp : point du plan
     Plane(const Vector3f &nn,const Vector3f &pp);
+
+    ///\brief Destructeur
+    ~Plane();
+
     float getDistance(const Vector3f &from) const override;
     void getSurfaceData(const Vector3f &Phit, Vector3f &Nhit, Vector3f &tex) const override;
     bool intersect(const Ray &ray, float &t) override;

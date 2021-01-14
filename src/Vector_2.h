@@ -8,6 +8,7 @@
 #include <vector>
 #include <iostream>
 
+///\brief classe de vecteur (finalement non utilisée)
 template<typename T, typename std::size_t s>
 class Vector{
 public :

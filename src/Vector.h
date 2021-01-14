@@ -9,6 +9,7 @@
 #include <cmath>
 #include <cassert>
 
+///\brief classe de vecteur
 template<typename T>
 class Vector3 {
 public:

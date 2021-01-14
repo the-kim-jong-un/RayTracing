@@ -22,7 +22,7 @@ public:
 
     ///\brief Calcule l'écart entre le point donné et la surface de l'objet
     /// @param from Point donné pour le calcul de distance
-    /// @return distance entre @param from et la surface de l'objet
+    /// @return distance entre from et la surface de l'objet
     virtual float getDistance(const Vector3f &from) const=0;
 
     /// @brief test d'intersection

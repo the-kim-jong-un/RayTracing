@@ -86,17 +86,19 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classComplexObject.html#aba871162628b799d0ea78453c58321c1">~ComplexObject</a>();</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code" href="classComplexObject.html#a474adf605bd3a3b4ea44e4f4e31b4f19">getDistance</a>(<span class="keyword">const</span> <a class="code" href="classVector3.html">Vector3f</a> &amp;from) <span class="keyword">const</span>=0;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classComplexObject.html#a884b3835f856b9fc3e624607b32b3288">intersect</a>(<span class="keyword">const</span> <a class="code" href="classRay.html">Ray</a> &amp;ray, <span class="keywordtype">float</span> &amp;t)=0;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classComplexObject.html#afdaf091d6eca1c570946857e8a025b21">getSurfaceData</a>(<span class="keyword">const</span> <a class="code" href="classVector3.html">Vector3f</a> &amp;Phit, <a class="code" href="classVector3.html">Vector3f</a> &amp;Nhit, <a class="code" href="classVector3.html">Vector3f</a> &amp;tex) <span class="keyword">const</span>=0;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classComplexObject.html#a9537856884a1edf8f3a0bbacc3e63030">print</a>() <span class="keyword">const</span>=0;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code" href="classComplexObject.html#a474adf605bd3a3b4ea44e4f4e31b4f19">getDistance</a>(<span class="keyword">const</span> <a class="code" href="classVector3.html">Vector3f</a> &amp;from) <span class="keyword">const</span>=0;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classComplexObject.html#a884b3835f856b9fc3e624607b32b3288">intersect</a>(<span class="keyword">const</span> <a class="code" href="classRay.html">Ray</a> &amp;ray, <span class="keywordtype">float</span> &amp;t)=0;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif //RAYTRACING_COMPLEXOBJECT_H</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classComplexObject.html#afdaf091d6eca1c570946857e8a025b21">getSurfaceData</a>(<span class="keyword">const</span> <a class="code" href="classVector3.html">Vector3f</a> &amp;Phit, <a class="code" href="classVector3.html">Vector3f</a> &amp;Nhit, <a class="code" href="classVector3.html">Vector3f</a> &amp;tex) <span class="keyword">const</span>=0;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classComplexObject.html#a9537856884a1edf8f3a0bbacc3e63030">print</a>() <span class="keyword">const</span>=0;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif //RAYTRACING_COMPLEXOBJECT_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassComplexObject_html_a474adf605bd3a3b4ea44e4f4e31b4f19"><div class="ttname"><a href="classComplexObject.html#a474adf605bd3a3b4ea44e4f4e31b4f19">ComplexObject::getDistance</a></div><div class="ttdeci">virtual float getDistance(const Vector3f &amp;from) const =0</div><div class="ttdoc">Calcule l'écart entre le point donné et la surface de l'objet.</div></div>
 <div class="ttc" id="aclassComplexObject_html_aba871162628b799d0ea78453c58321c1"><div class="ttname"><a href="classComplexObject.html#aba871162628b799d0ea78453c58321c1">ComplexObject::~ComplexObject</a></div><div class="ttdeci">~ComplexObject()</div><div class="ttdoc">Destructeur de ComplexObject.</div><div class="ttdef"><b>Definition:</b> ComplexObject.cpp:13</div></div>

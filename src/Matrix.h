@@ -7,6 +7,7 @@
 #include <vector>
 #include <iostream>
 
+///\brief classe matrice (finalement non utilisée)
 template<typename T, typename std::size_t s>
 class Matrix{
 public :

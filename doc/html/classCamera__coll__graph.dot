@@ -7,5 +7,5 @@ digraph "Camera"
   Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" origin" ,fontname="Helvetica"];
   Node2 [label="Vector3\< float \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classVector3.html",tooltip=" "];
   Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cameraToWorld" ,fontname="Helvetica"];
-  Node3 [label="Matrix4x4",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classMatrix4x4.html",tooltip=" "];
+  Node3 [label="Matrix4x4",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classMatrix4x4.html",tooltip="classe de matrice de talle fixe 4x4"];
 }

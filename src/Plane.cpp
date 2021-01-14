@@ -24,3 +24,5 @@ bool Plane::intersect(const Ray &ray, float &t) {
 void Plane::print() const {
 
 }
+
+Plane::~Plane() = default;
