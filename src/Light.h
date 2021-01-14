@@ -8,7 +8,7 @@
 
 #include "Vector.h"
 
-
+///\brief  classe lumiere (finalement pas utilisée)
 class Light {
 public:
     Position origin;

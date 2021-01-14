@@ -10,7 +10,7 @@
 #include "mainwindow.h"
 
 
-
+///\brief classe de rendu
 class Renderer {
 public:
 
