@@ -15,8 +15,8 @@ public:
     Vector3f pointOnPlane;
 
     ///\brief Constructeur de Plane
-    ///\param nn :
-    ///\param pp :
+    ///\param nn : normale
+    ///\param pp : point du plan
     Plane(const Vector3f &nn,const Vector3f &pp);
     float getDistance(const Vector3f &from) const override;
     void getSurfaceData(const Vector3f &Phit, Vector3f &Nhit, Vector3f &tex) const override;
