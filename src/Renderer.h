@@ -54,7 +54,7 @@ public:
     /// @brief Lance le rendu en multi thread
     void renderThread();
 
-
+    /// @brief Fonction de lancement de rayon, optimiser pour l'utilisation en thread
     void threadRayCast(Vector3f *framebuffer,const Vector3f & origin, const float & fov, const float &ratio, const unsigned int & offset) const;
 
     ///\brief Enregistre la scène dans un fichier
