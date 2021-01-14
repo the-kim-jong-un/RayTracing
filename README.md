@@ -22,13 +22,15 @@ Como Adrien       p1709079 <br>
 ### Utilite
 ----
 
-Permettre d'executer du lancer de rayon, sur des scènes composées d'objet simple (cube, rectangle et sphere) en prenant en compte reflection, refraction.
+Permettre d'executer du lancer de rayon, sur des scènes composées d'objet simple ou complexes (cube, plan et sphere) en prenant en compte reflection, refraction, transparence et couleurs.
 
 
 ### Installation et execution
 ----
 
-Avoir un IDE utilisant CMakeList comme CLion et run à partir de l'IDE.
+Avoir un IDE utilisant CMakeList comme CLion et run à partir de l'IDE. <br>
+Lorsque l'application est ouverte, choisir la scène, choisir le niveau de détails grâce au slider, puis appuyer sur le bouton render. <br>
+Nous pouvons acceder à la DepthMap grace au bouton Shading et Toggle View.<br>
 
 
 ### Dependances
