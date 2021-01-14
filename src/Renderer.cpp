@@ -43,7 +43,7 @@ void Renderer::renderMono() {
                 Vector3f colBuff = Vector3f();
                 int maxRay = 1;
                 for (int rayn = 0; rayn < maxRay; ++rayn) {
-                    colBuff = colBuff+ sphereTrace(Ray(origin,dir),0,depthBuffer[ind]);
+                    colBuff = colBuff+ sphereTrace(Ray(origin, dir), 0, depthBuffer[ind], GIBuffer[ind]);
                 }
                 colBuff = colBuff/(float)maxRay;
                 pix[ind]=colBuff;
@@ -62,12 +62,13 @@ void Renderer::renderThread() {
     float ratio = (float)width/(float)height;
     frameBuffer = new Vector3f[width*height];
     depthBuffer = new Vector3f[width*height];
+    GIBuffer = new Vector3f[width*height];
     Vector3f * pix = frameBuffer;
     Qarr = new QByteArray;
     Camera::cameraToWorld.multVecMatrix(Vector3f(),origin);
 
     running=true;
-    std::thread tSave(&Renderer::permSave,this,frameBuffer);
+    std::thread tSave(&Renderer::permSave,this, false);
     std::thread tPool[maxThread];
     for (int j = 0; j < maxThread; ++j) {
         tPool[j]=std::thread(&Renderer::threadRayCast,this,
@@ -97,10 +98,11 @@ void Renderer::renderThread() {
     }
     running= false;
     tSave.join();
+    permSave(true);
     saveToFile(pix);
     saveToFile(depthBuffer,1);
     //delete [] pix;
-    delete [] depthBuffer;
+    //delete [] depthBuffer;
 }
 
 void Renderer::threadRayCast(Vector3f *framebuffer,const Vector3f & origin, const float & fov, const float &ratio,const unsigned int & offset) const {
@@ -118,7 +120,7 @@ void Renderer::threadRayCast(Vector3f *framebuffer,const Vector3f & origin, cons
                 Vector3f colBuff = Vector3f();
                 int maxRay = 1;
                 for (int rayn = 0; rayn < maxRay; ++rayn) {
-                    colBuff = colBuff+ sphereTrace(Ray(origin,dir),0,depthBuffer[ind]);
+                    colBuff = colBuff+ sphereTrace(Ray(origin, dir), 0, depthBuffer[ind], GIBuffer[ind]);
                 }
                 colBuff = colBuff/(float)maxRay;
                 framebuffer[ind]=colBuff;
@@ -159,18 +161,28 @@ void Renderer::render() {
     }
 }
 
-void Renderer::permSave(const Vector3f *pix) {
-    while (running) {
-        //saveToFile(frameBuffer);
-        //Qarr->clear();
-        mw->updateImage(frameBuffer);
+void Renderer::permSave(bool singleFrame) {
+    while (running || singleFrame) {
+        switch (mw->currentlyShown) {
+            case MainWindow::RENDER:
+                mw->updateImage(frameBuffer);
+                break;
+            case MainWindow::DEPTH_MAP:
+                mw->updateImage(depthBuffer);
+                break;
+            case MainWindow::GI_MAP:
+                mw->updateImage(GIBuffer);
+                break;
+            default:
+                mw->updateImage(frameBuffer);
+                break;
+        }
+        if (singleFrame){
+            singleFrame = !singleFrame;
+        }
     }
 }
 
-inline
-float clamp(const float & low, const float & high, const float &val){
-    return std::max(low, std::min(high,val));
-}
 
 inline
 float deg2rad(const float &deg) {

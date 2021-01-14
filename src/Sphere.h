@@ -28,7 +28,8 @@ public:
     ///\brief Affiche le rayon de la Sphere
     void print() const override;
 
-    ///\brief retourne la distance d'écart entre la surface de la sphere et l'origine de la lumiere
+    ///\brief retourne la distance d'écart entre la surface de la sphere et le point donné
+    /// @param from Point donné pour le calcul de distance
     float getDistance(const Vector3f & from) const override;
 
     ///\brief

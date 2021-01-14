@@ -25,8 +25,8 @@ public:
     ///\brief Affichage de la taille de l'arrete dans la console
     void print() const override;
 
-    ///\brief Calcule la distance entre la surface du cube et l'origine de la lumiere
-    ///\param from :
+    ///\brief Calcule la distance entre la surface du cube et le point donné
+    ///\param from Point donné
     [[nodiscard]] float getDistance(const Vector3f & from) const override;
     bool intersect(const Ray& ray, float&t) override;
 

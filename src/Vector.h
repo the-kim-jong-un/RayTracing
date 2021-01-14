@@ -142,6 +142,19 @@ float magnitude(const Vector3<T> &vec) {
     return sqrtf((vec.x * vec.x) + (vec.y * vec.y) + (vec.z * vec.z));
 }
 
+inline
+float clamp(const float & low, const float & high, const float &val){
+    return std::max(low, std::min(high,val));
+}
+
+
+
+template<typename T>
+Vector3<T> clamp(const float & low, const float & high,const Vector3<T> &vec) {
+    return  Vector3(clamp(low,high,vec.x),clamp(low,high,vec.y),clamp(low,high,vec.z));
+
+}
+
 template<typename T>
 Vector3<float> normalize(const Vector3<T> &vec) {
     return Vector3(vec / magnitude(vec));
@@ -154,8 +167,6 @@ Vector3<T> crossProduct(const Vector3<T> &a, const Vector3<T> &b) {
             a.z * b.x - a.x * b.z,
             a.x * b.y - a.y * b.x);
 }
-
-
 
 
 

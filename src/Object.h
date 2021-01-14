@@ -29,8 +29,8 @@ public:
     /// @return vrai si le rayon entre en intersetion avec la surface de l'objet
     virtual bool intersect(const Ray & ray, float & t) = 0;
 
-    ///\brief Calcule l'écart entre l'origine de la lumiere et la surface de l'objet
-    /// @param from position
+    ///\brief Calcule l'écart entre le point donné et la surface de l'objet
+    /// @param from Point donné pour le calcul de distance
     /// @return distance entre @param from et la surface de l'objet
     virtual float getDistance(const Vector3f & from) const =0;
 

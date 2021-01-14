@@ -39,6 +39,12 @@ public:
     void updateImage(const Vector3f * pix);
     ///\brief affichage de la scene
     void displayImage();
+    enum ShowedMap{
+        RENDER,
+        DEPTH_MAP,
+        GI_MAP
+    };
+    ShowedMap currentlyShown;
 
 private slots :
     ///\brief initialisation globale de la fenetre QT, appelle les autres fonctions initXXX()
@@ -66,6 +72,8 @@ private slots :
 
 
 private:
+
+
     Ui::MainWindow * ui;
     QSlider * speedSlider;
     QLabel * displayLabel, * sliderLabel, * downloadLabel;

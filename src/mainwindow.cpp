@@ -11,6 +11,7 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
     setWindowTitle("Ray Tracing");
+    currentlyShown=RENDER;
     initWindow();
     displayImage();
     qDebug()<< "Preselected scene : " << ui->sceneCombo->currentIndex();
@@ -46,7 +47,7 @@ void MainWindow::initSliders(){
 
 void MainWindow::initButtons(){
     //shading button
-    ui->shadingButton->setText("Shading");
+    ui->shadingButton->setText("Toggle View");
     ui->shadingButton->setPalette(QColor(100,100,100));
     ui->shadingButton->setGeometry(QRect(QPoint(windowWIdth/40+220, windowHeight/40), QSize(100,25)));
     connect(ui->shadingButton, SIGNAL(clicked()), SLOT(shading()));
@@ -85,6 +86,17 @@ void MainWindow::sliderValue(){
     qDebug() << std::pow(2,ui->speedSlider->value());
 }
 void MainWindow::shading(){
+    if (currentlyShown==RENDER){
+        currentlyShown=DEPTH_MAP;
+    } else if (currentlyShown == DEPTH_MAP && ui->speedSlider->value() > 0){
+        currentlyShown=GI_MAP;
+    } else{
+        currentlyShown=RENDER;
+    }
+
+    if (!Renderer::running){
+        Renderer::self->permSave(true);
+    }
 }
 void MainWindow::renderImage() {
 
@@ -105,7 +117,8 @@ void MainWindow::sceneChoice(){
     SC.detach();
 }
 void MainWindow::downloadImage(){
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "/home/adrien/Pictures/Wallpapers/untitled.jpg", tr("Images (*.png *.jpg)"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "../data/output.png", tr("Images (*.png *.jpg)"));
+    ui->displayLabel->pixmap()->save(fileName);
 }
 
 MainWindow::~MainWindow(){
@@ -120,20 +133,9 @@ void MainWindow::updateImage(const Vector3f * pix) {
     for (int i = 0; i < Renderer::width; ++i) {
         for (int j = 0; j < Renderer::height; ++j) {
             int ind = i*Renderer::height+j;
-            //std::cout<<pix[ind].x<<"/"<<pix[ind].y<<"/"<<pix[ind].z<<'\n';
-
-
-            //QRgb rgb = qRgb((int)pix[ind].x,(int)pix[ind].y,(int)pix[ind].z/10);
-            //QColor col = QColor(rgb);
             img->setPixelColor(j,i,QColor((int)pix[ind].x,(int)pix[ind].y,(int)pix[ind].z));
-            //img->setPixelColor(i,j,QColor(0,200,0));
-            //img->setPixelColor(i,j,col);
         }
     }
-
-    //img->loadFromData(*Renderer::Qarr,"ppm");
-    //ui->displayLabel->setPixmap(QPixmap::loadFromData(Renderer::Qarr,"ppm"));
-
     ui->displayLabel->setPixmap(QPixmap::fromImage(*img));
     delete img;
 }
