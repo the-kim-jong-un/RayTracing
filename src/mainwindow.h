@@ -35,22 +35,33 @@ public:
     ~MainWindow();
 
     static QPixmap * QPM;
+    ///\brief mise a jour de l'image en temps reel
     void updateImage(const Vector3f * pix);
+    ///\brief affichage de la scene
     void displayImage();
 
 private slots :
+    ///\brief initialisation globale de la fenetre QT, appelle les autres fonctions initXXX()
     void initWindow();
+    ///\brief intialisation des boutons de la fenetrre QT
     void initButtons();
+    ///\brief initialisation du slider "detail Level"
     void initSliders();
+    ///\brief initialisation de la fenetre QT
     void initComboBox();
 
 
+    ///\brief choix de la scene 
     void sceneChoice();
+    ///\brief recuperere la valeu du slider du niveau de detail
     void sliderValue();
 
 
+    ///\brief creer une depthMap de la scene choisi
     void shading();
+    ///\brief lance le rendu de l'image apres avoir pris en compte la scene choisi et le niveau de detail
     void renderImage();
+    ///\brief energistrement de l'image 
     void downloadImage();
 
 
